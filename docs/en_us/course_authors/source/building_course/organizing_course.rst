@@ -15,7 +15,7 @@ You organize your course in the following hierarchy:
 - :ref:`Sections`, which contain
     - :ref:`subsections`, which contain
         - :ref:`units`, which contain
-            - :ref:`components`, which contain your actual course content.
+            - :ref:`components`, which contain your actual course content. A unit can also contain :ref:`Nested Components`
 
 
 Studio provides you with flexibility when organizing your course. A common course model is for sections to correspond to weeks or chapters, and for subsections to correspond to lessons.
@@ -127,7 +127,7 @@ When you create a new unit, a page opens for that unit. On the unit page, you ca
 
 - Enter the unit name that you want in the **Display Name** field. Note that students do not see the unit name.
 - Create components in the unit.
-- Change the visibility of the unit. By default, the unit visibility is set to **Private**, so students will not be able to see the unit.Unless you want students to see the unit immediately, leave this setting as-is. For more information, see :ref:`Publishing Your Course`.
+- Change the visibility of the unit. By default, the unit visibility is set to **Private**, so students will not be able to see the unit. Unless you want students to see the unit immediately, leave this setting as-is. For more information, see :ref:`Public and Private Units`.
 - Preview a draft of the unit.
 - If a unit has been published, view the live version of the unit.
 
@@ -192,7 +192,7 @@ Click the Edit icon.  Then follow instructions for the type of component you are
 Set the Display Name for a Component
 =====================================
 
-Each component has a display name that shows in the component header when you can edit the component. The display name also shows to students when they hover the mouse pointer over the unit icon in the course accordian.
+Each component has a display name that shows in the component header when you can edit the component. The display name also shows to students when they hover the mouse pointer over the unit icon in the course accordion.
 
 To set the display name for a component:
 
@@ -237,6 +237,95 @@ When you can delete the component, the Delete icon appears in the component head
   :alt: Image of a unit with Delete icon circled
 
 Click the Delete icon.  Then follow instructions for the type of component you are editing.
+
+
+.. _Nested Components:
+
+******************************************
+Components that Contain Other Components
+******************************************
+
+You can configure your course content so that components contain other components.  Some examples of when you would need to do this is for conditional content or A/B tests.  See :ref:`Setting Up A/B Tests` for more information.
+
+The component that contains other components is referred to as the parent; the contained components are referred to as children.  
+
+In the unit page, a parent component appears with the display name and a **VIEW** link. For example:
+
+.. image:: ../Images/component_container.png
+ :alt: Image of a unit page with a parent component
+
+When you click **VIEW**, the parent component page opens, showing all child components.  Breadcrumbs at the top of the page show the unit and parent component:
+
+.. image:: ../Images/child-components.png
+ :alt: Image of a child component page
+
+Click the arrow next to a child component name to expand that component to see its contents. In this example, Child Component A contains an HTML component and a video:
+
+.. image:: ../Images/child_component_a.png
+ :alt: Image of an expanded child component
+
+.. note:: In this release, you cannot create parent and child components in Studio. You set up components and their relationships to each other in XML. You can then import the course into Studio, edit the child components, and verify that your course components are organized as you intended.
+
+If the unit containing the child components is private or in draft, you can edit the child components just as you can any other component.
+
+
+======================================
+XML for Parent and Child Components
+======================================
+
+You develop parent and child components in XML, then import the XML course into Studio to verify that the structure is as you intended. The following examples show the XML used to create the unit and components shown in Studio above.
+
+The XML for the unit is:
+
+.. code-block:: xml
+
+    <vertical display_name="Unit 1">
+        <html url_name="6a5cf0ea41a54b209e0815147896d1b2"/>
+        <vertical url_name="131a499ddaa3474194c1aa2eced34455"/>
+    </vertical>
+
+The ``<vertical url_name="131a499ddaa3474194c1aa2eced34455"/>`` element above references the parent component file that contains the child components:
+ 
+.. code-block:: xml
+
+    <vertical display_name="Parent Component">
+        <vertical url_name="2758bbc495dd40d59050da15b40bd9a5"/>
+        <vertical url_name="c5c8b27c2c5546e784432f3b2b6cf2ea"/>
+    </vertical>
+
+The two verticals referenced by the parent component refer to the child components, which contain the actual content of your course:
+
+.. code-block:: xml
+
+    <vertical display_name="Child Component A">
+        <html url_name="4471618afafb45bfb86cbe511973e225"/>
+        <video url_name="fbd800d0bdbd4cb69ac70c47c9f699e1"/>
+    </vertical>
+
+.. code-block:: xml
+
+    <vertical display_name="Child Component B">
+        <html url_name="dd6ef295fda74a639842e1a49c66b2c7"/>
+        <problem url_name="b40ecbe4ed1b4280ae93e2a158edae6f"/>
+    </vertical>
+
+Theoretically, there is no limit to the levels of component nesting you can use in your course.
+
+
+======================================
+The Student View of Nested Components
+======================================
+
+For students, all parent and child components are displayed on the unit page. The following example shows the student view of the unit described above:
+
+TO REPLACE WHEN WORKING IN LMS
+
+.. image:: ../Images/nested_components_student_view.png
+ :alt: Image of the student's view of nested components
+
+.. note:: The visibility of nested components depends on the visibility of the parent unit. The parent unit must be public for students to see nested components. For more information, see :ref:`Visibility of Components Contained by Other Components`.
+
+
 
 .. _Reorganize Your Course:
 
