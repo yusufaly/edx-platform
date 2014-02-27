@@ -21,7 +21,7 @@ For information about how you establish a grading policy and work with the probl
 .. _Review_grades:
 
 ********************************************************
-Review how grading is configured for your course
+Review How Grading is Configured for Your Course
 ********************************************************
 
 You can review the assignment types that are graded and their respective weights on the Instructor Dashboard.
@@ -50,13 +50,13 @@ For more information, see :ref:`Configure the Assignment Types`.
 .. _Access_grades:
 
 ********************************************************
-Access student grades
+Access Student Grades
 ********************************************************
 
-You can generate and review your students' grades at any time during your course. You can generate grades for all currently enrolled students, or check the progress of a single student, who can be enrolled or unenrolled.
+You can generate and review your students' grades at any time during your course. You can generate grades for all currently enrolled students, or check the progress of a single student (who can be enrolled or unenrolled).
 
 =========================================================
-Generate grades for enrolled students
+Generate Grades for Enrolled Students
 =========================================================
 
 When you initiate calculations to grade student work, a process starts on the edX servers. The complexity of your grading configuration and the number of students enrolled in your course affect how long this process takes. You can download the calculated grades in a CSV (comma-separated values) file when the grading process is complete. You cannot view student grades on the Instructor Dashboard. 
@@ -76,7 +76,7 @@ A status message indicates that the grading process is in progress. This process
 When the file is ready for download, a link to the CSV file displays at the bottom of this page.
 
 ==========================================
-Download grades for enrolled students
+Download Grades for Enrolled Students
 ==========================================
 
 After you request a grade report for your students, the result is a time-stamped CSV file that includes columns to identify each student: id, email, and username. It also includes a column for every assignment that is included in your grading configuration: each homework, lab, midterm, final, and any other assignment type you added to your course. 
@@ -91,13 +91,13 @@ To download a file of student grades:
 
 #. To open or save a grade report file, click the *course_id* \_grade_report_\ *date*.csv file name at the bottom of the page.
 
-.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. You cannot copy a link and save it or email it, as the value for the link that you copy expires within five minutes.
+.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. You cannot copy a link and save it or email it, as the value for the link that you copy expires within 5 minutes.
 
 =========================================================
-Check the progress of a single student
+Check the Progress of a Single Student
 =========================================================
 
-For a single student, you can review a chart that plots the grade earned for every graded assignment, and the overall total, as of the current date. You identify the student by supplying either an email address or username. 
+For a single student, you can review a chart that plots the grade earned for every graded assignment, and the overall total, as of the current date. You identify the student by supplying either an email address or username. You can check the progress for students who are currently enrolled in, or who have unenrolled from, the course.
 
 Students can view a similar chart (of their own progress only) when they are logged in to the course.
 
@@ -119,7 +119,7 @@ The Course Progress page for the student displays a chart with the grade for eac
      :alt: A bar chart from a student's Progress page showing grade acheived for each assignment
 
 =========================================================
-Check a student's submission and submission history
+Check a Student's Submission and Submission History
 =========================================================
 
 For a single student and problem, you can review the exact response submitted, the number of attempts made, and the date and time of the submission. You identify the student by supplying a username. 
@@ -139,14 +139,14 @@ Information about the response or responses provided by the student displays.
 To close the Submission History Viewer, click on the browser page outside of the viewer.
 
 ===================================================
-View a histogram of scores for a problem
+View a Histogram of Scores for a Single Problem
 ===================================================
 
 You can view a chart of the score distribution for a specified problem.
 
 .. note:: In order to view the score distribution for a problem, you need its unique identifier. See :ref:`find_URL`.
 
-To display demographic distributions for gender and educational attainment:
+To display the distribution of scores for a problem:
 
 #. View the live version of your course.
 
@@ -156,7 +156,7 @@ To display demographic distributions for gender and educational attainment:
 
 #. In the Grade Distribution section, select a problem by using its URL. 
 
-   A graph displays a histogram of scores for that problem.
+   A histogram of scores for that problem displays.
 
 ..  **Question**: (sent to Olga 31 Jan 14) this is a tough UI to use: how do they correlate the codes in this drop-down with actual constructed problems? the copy-and-paste UI on the Student Admin page actually works a little better imo.
 .. **Question**: I'd like to include an image, but need a good example. Elina suggested using the edX demo course (I don't have access), and a problem that has multiple possible answers
@@ -164,7 +164,7 @@ To display demographic distributions for gender and educational attainment:
 .. _Adjust_grades:
 
 ***********************************
-Adjust grades
+Adjust Grades
 ***********************************
 
 You can adjust grades for one student at a time, or for all of the enrolled students in the course. For example, your course beta testers can evaluate numerous different correct and incorrect responses to verify that your course is set up as you intend. Students can also report problems while a course is running. 
@@ -180,7 +180,7 @@ To make these adjustments, you need to specify a problem by supplying the unique
 .. _find_URL:
 
 ==================================================
-Find the URL for a problem
+Find the URL for a Problem
 ==================================================
 
 When you create each of the problems for a course, edX assigns a unique identifier. To make grading adjustments for a problem, or to view data about it, you need to specify this identifier.
@@ -206,7 +206,7 @@ To find the unique identifier in the URL for a problem:
    To close the Staff Debug viewer, click on the browser page outside of the viewer.
 
 ===================================================
-Rescore student submissions
+Rescore Student Submissions
 ===================================================
 
 Each problem that you define for your course includes a correct answer, and may also include a tolerance or acceptable alternatives. If you decide to make a change to these values, you can rescore any responses that were already submitted. For a specified problem, you can rescore the work submitted by a single student, or rescore the submissions made by every enrolled student. 
@@ -238,7 +238,7 @@ To rescore a problem:
    A table displays the status of the rescore process for each student or problem.
 
 ===================================================
-Reset student attempts
+Reset Student Attempts
 ===================================================
 
 When you create a problem, you can limit the number of times that a student can try to answer that problem correctly. If unexpected issues occur for a problem, you can reset the value for one particular student's attempts back to zero so that the student can begin work over again. If the unexpected behavior affects all of the students in your course, you can reset the number of attempts for all students to zero. 
