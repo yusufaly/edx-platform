@@ -1,7 +1,7 @@
 .. _Grades:
 
 ############################
-Grades
+Grade and Answer Data
 ############################
 
 You can review information about how grading is configured for your course, and generate student grades, at any time after you create the course. You can also make adjustments to how a problem is graded, for a single student or all students.
@@ -13,6 +13,8 @@ For information about the grading data you can access and the changes you can ma
 * :ref:`Access_grades`
 
 * :ref:`Adjust_grades`
+
+To review student answers to the problems in your course, data is available for the course as a whole or for a selected problem. See :ref:`Review_Answers`.
 
 For information about how you establish a grading policy and work with the problem components in your course, see :ref:`Establish a Grading Policy` or :ref:`Working with Problem Components`.
 
@@ -138,29 +140,6 @@ Information about the response or responses provided by the student displays.
 
 To close the Submission History Viewer, click on the browser page outside of the viewer.
 
-===================================================
-View a Histogram of Scores for a Single Problem
-===================================================
-
-You can view a chart of the score distribution for a specified problem.
-
-.. note:: In order to view the score distribution for a problem, you need its unique identifier. See :ref:`find_URL`.
-
-To display the distribution of scores for a problem:
-
-#. View the live version of your course.
-
-#. Click **Instructor** > **Try New Beta Dashboard**.
-
-#. Click **Analytics**. 
-
-#. In the Grade Distribution section, select a problem by using its URL. 
-
-   A histogram of scores for that problem displays.
-
-..  **Question**: (sent to Olga 31 Jan 14) this is a tough UI to use: how do they correlate the codes in this drop-down with actual constructed problems? the copy-and-paste UI on the Student Admin page actually works a little better imo.
-.. **Question**: I'd like to include an image, but need a good example. Elina suggested using the edX demo course (I don't have access), and a problem that has multiple possible answers
-
 .. _Adjust_grades:
 
 ***********************************
@@ -267,3 +246,38 @@ To reset student attempts for a problem:
 
    A table displays the status of the reset process for each student or problem.
 
+.. _Review_Answers:
+
+****************************************
+AN-610
+****************************************
+
+
+===================================================
+Download Answer Distributions
+===================================================
+
+
+
+===================================================
+View a Histogram of Scores for a Single Problem
+===================================================
+
+You can view a chart of the score distribution for a specified problem.
+
+.. note:: In order to view the score distribution for a problem, you need its unique identifier. See :ref:`find_URL`.
+
+To display the distribution of scores for a problem:
+
+#. View the live version of your course.
+
+#. Click **Instructor** > **Try New Beta Dashboard**.
+
+#. Click **Analytics**. 
+
+#. In the Grade Distribution section, select a problem by using its URL. 
+
+   A histogram of scores for that problem displays.
+
+..  **Question**: (sent to Olga 31 Jan 14) this is a tough UI to use: how do they correlate the codes in this drop-down with actual constructed problems? the copy-and-paste UI on the Student Admin page actually works a little better imo.
+.. **Question**: I'd like to include an image, but need a good example. Elina suggested using the edX demo course (I don't have access), and a problem that has multiple possible answers
