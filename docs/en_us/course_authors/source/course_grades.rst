@@ -4,9 +4,7 @@
 Grade and Answer Data
 ############################
 
-You can review information about how grading is configured for your course, and generate student grades, at any time after you create the course. You can also make adjustments to how a problem is graded, for a single student or all students.
-
-For information about the grading data you can access and the changes you can make, see the following topics:
+You can review information about how grading is configured for your course, and generate student grades, at any time after you create the course. You can also make adjustments to how a problem is graded, for a single student or all students. For information about the grading data you can access and the changes you can make, see the following topics:
 
 * :ref:`Review_grades`
 
@@ -14,7 +12,7 @@ For information about the grading data you can access and the changes you can ma
 
 * :ref:`Adjust_grades`
 
-To review student answers to the problems in your course, data is available for the course as a whole or for a selected problem. See :ref:`Review_Answers`.
+To review student answers to the problems in your course, you can download data for course problems or review a graph for a selected problem. See :ref:`Review_Answers`.
 
 For information about how you establish a grading policy and work with the problem components in your course, see :ref:`Establish a Grading Policy` or :ref:`Working with Problem Components`.
 
@@ -249,13 +247,12 @@ To reset student attempts for a problem:
 .. _Review_Answers:
 
 ****************************************
-AN-610
+Student Answer Distributions
 ****************************************
-
 
 For the problems in your course that use one of the common problem types, you can download a CSV file with data about the distribution of student answers. (The common problem types are checkbox, dropdown, multiple choice, numerical input, and text input.)
 
-The file includes a row for each problem-answer combination. For example, the file includes five rows for a multiple choice problem that has five possible answers. 
+The file includes a row for each problem-answer combination. For example, for a multiple choice problem that has five possible answers the file includes five rows. For problems that use problem randomization features, such as an answer pool or choice shuffling, there is one row for each possible problem, answer, and variation.
 
 The CSV file contains the following columns:
 
@@ -266,32 +263,41 @@ The CSV file contains the following columns:
    * - Column
      - Description
    * - ModuleID
-     - 
+     - The internal identifer for the problem component.
    * - PartID
-     - 
+     - The internal identifier for each problem in a component that contains multiple problems. Blank for components that contain a single problem.
    * - ValueID
-     - Displays the internal identifer of the answer choice: CHOICE_1, CHOICE_2, and so on, for checkbox, dropdown, and multiple choice problems. Blank for numerical input and text input problems.
+     - The internal identifer of the answer choice for checkbox, dropdown, and multiple choice problems. Blank for numerical input and text input problems.
    * - AnswerValue
-     - Displays the 
+     - The text label of the answer choice for checkbox, dropdown, and multiple choice problems. The value entered by the student for numerical input and text input problems.
    * - Variant
-     - 
+     - For problems that use problem randomization features, contains the unique identifier of this variant for the problem-answer combination. Blank for problems that do not use randomization.
    * - Problem Display Name
      - The **Display Name** defined for the problem.
-   * - Prompt
-     - 
+   * - Question
+     - The text label that appears above the answer choices or the text entry field for the problem. In Studio's Simple Editor, this text is surrounded by two pairs of angle brackets (>>Question<<).
    * - Correct Answer
-     - Displays 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
+     - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
    * - Count
-     - The number of times 
-
-
-
+     - The number of times that all students entered or selected this answer for the problem. Each student contributes a maximum of one to this count, even if a student uses multiple attempts to provide the same answer.
 
 ===================================================
 Download Answer Distributions
 ===================================================
 
+An automated process runs periodically on the edX servers to update the CSV file of student answer data. A link to the most recently updated version of the CSV file is available on the Instructor Dashboard. 
 
+To download the most recent file of student answer data:
+
+#. View the live version of your course.
+
+#. Click **Instructor** > **Try New Beta Dashboard**.
+
+#. Click **Data Download**.
+
+#. At the bottom of the page, locate the link to the CSV file.
+
+.. I'd like to include the file name here.
 
 ===================================================
 View a Histogram of Scores for a Single Problem
