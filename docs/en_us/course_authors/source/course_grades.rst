@@ -253,6 +253,40 @@ AN-610
 ****************************************
 
 
+For the problems in your course that use one of the common problem types, you can download a CSV file with data about the distribution of student answers. (The common problem types are checkbox, dropdown, multiple choice, numerical input, and text input.)
+
+The file includes a row for each problem-answer combination. For example, the file includes five rows for a multiple choice problem that has five possible answers. 
+
+The CSV file contains the following columns:
+
+.. list-table::
+   :widths: 20 75
+   :header-rows: 1
+
+   * - Column
+     - Description
+   * - ModuleID
+     - 
+   * - PartID
+     - 
+   * - ValueID
+     - Displays the internal identifer of the answer choice: CHOICE_1, CHOICE_2, and so on, for checkbox, dropdown, and multiple choice problems. Blank for numerical input and text input problems.
+   * - AnswerValue
+     - Displays the 
+   * - Variant
+     - 
+   * - Problem Display Name
+     - The **Display Name** defined for the problem.
+   * - Prompt
+     - 
+   * - Correct Answer
+     - Displays 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
+   * - Count
+     - The number of times 
+
+
+
+
 ===================================================
 Download Answer Distributions
 ===================================================
