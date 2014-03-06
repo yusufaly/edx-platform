@@ -10,6 +10,8 @@ Change Log
 
    * - Date
      - Change
+   * - 6 Mar 2014
+     - Added new fields for the server ``problem_check`` event type to the :ref:`Tracking Logs` chapter. Reformatted the :ref:`Tracking Logs` chapter to improve readability.
    * - 24 Feb 14
      - Added descriptions of new fields to the :ref:`Wiki_Data` chapter.
    * - 21 Feb 14

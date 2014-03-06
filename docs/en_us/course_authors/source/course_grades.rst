@@ -265,7 +265,7 @@ The CSV file contains the following columns:
    * - ModuleID
      - The internal identifer for the problem component.
    * - PartID
-     - The internal identifier for each problem in a component that contains multiple problems. Blank for components that contain a single problem.
+     - For a component that contains multiple problems, the internal identifier for each problem. Blank for components that contain a single problem.
    * - ValueID
      - The internal identifer of the answer choice for checkbox, dropdown, and multiple choice problems. Blank for numerical input and text input problems.
    * - AnswerValue
@@ -319,5 +319,7 @@ To display the distribution of scores for a problem:
 
    A histogram of scores for that problem displays.
 
+   .. image:: Images/answer_histogram.png
+     :alt: Graph of the numbers of students who got different grades for a selected problem
+
 ..  **Question**: (sent to Olga 31 Jan 14) this is a tough UI to use: how do they correlate the codes in this drop-down with actual constructed problems? the copy-and-paste UI on the Student Admin page actually works a little better imo.
-.. **Question**: I'd like to include an image, but need a good example. Elina suggested using the edX demo course (I don't have access), and a problem that has multiple possible answers
