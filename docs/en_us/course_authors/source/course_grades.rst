@@ -16,12 +16,12 @@ To review student answers to the problems in your course, you can download data 
 
 For information about how you establish a grading policy and work with the problem components in your course, see :ref:`Establish a Grading Policy` or :ref:`Working with Problem Components`.
 
-**Important**: If you make changes to your grading policy or problem components after a course starts, students can see the effect of your changes on their Progress pages. Be sure to announce any changes on your Course Info page.
+**Important**: If you make changes to your grading policy after a course starts, students can see the effect of your changes on their Progress pages. Be sure to announce any changes on your Course Info page.
 
 .. _Review_grades:
 
 ********************************************************
-Review How Grading is Configured for Your Course
+Review How Grading Is Configured for Your Course
 ********************************************************
 
 You can review the assignment types that are graded and their respective weights on the Instructor Dashboard.
@@ -91,7 +91,7 @@ To download a file of student grades:
 
 #. To open or save a grade report file, click the *course_id* \_grade_report_\ *date*.csv file name at the bottom of the page.
 
-.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. You cannot copy a link and save it or email it, as the value for the link that you copy expires within 5 minutes.
+.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. Do not copy a link to save or email, as the value for the link expires within 5 minutes. The links on this page also expire if the page is open for more than 5 minutes: refresh the page to generate new links. 
 
 =========================================================
 Check the Progress of a Single Student
@@ -252,7 +252,9 @@ Student Answer Distributions
 
 For the problems in your course that use one of the common problem types, you can download a CSV file with data about the distribution of student answers. (The common problem types are checkbox, dropdown, multiple choice, numerical input, and text input.)
 
-The file includes a row for each problem-answer combination. For example, for a multiple choice problem that has five possible answers the file includes five rows. For problems that use problem randomization features, such as an answer pool or choice shuffling, there is one row for each possible problem, answer, and variation.
+The file includes a row for each problem-answer combination. For example, for a multiple choice problem that has five possible answers the file includes five rows. For problems that use problem randomization, there is one row for each possible problem, answer, and variation.
+
+.. when released, change last sentence to "For problems that use problem randomization features, such as an answer pool or choice shuffling, there is one row for each possible problem, answer, and variation."
 
 The CSV file contains the following columns:
 
@@ -280,6 +282,8 @@ The CSV file contains the following columns:
      - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
    * - Count
      - The number of times that all students entered or selected this answer for the problem. Each student contributes a maximum of one to this count, even if a student uses multiple attempts to provide the same answer.
+
+.. _Download_Answer_Distributions:
 
 ===================================================
 Download Answer Distributions
