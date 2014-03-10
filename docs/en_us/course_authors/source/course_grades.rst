@@ -4,7 +4,7 @@
 Grade and Answer Data
 ############################
 
-You can review information about how grading is configured for your course, and generate student grades, at any time after you create the course. You can also make adjustments to how a problem is graded, for a single student or all students. For information about the grading data you can access and the changes you can make, see the following topics:
+You can review information about how grading is configured for your course, and access student grades, at any time after you create the course. You can also make adjustments to how a problem is graded, for a single student or all students. For information about the grading data that you can access and the changes you can make, see the following topics:
 
 * :ref:`Review_grades`
 
@@ -45,7 +45,6 @@ You establish a grading policy for your course when you create it in Studio. Whi
      :alt: Studio example of homework assignment type and grading weight
 
 For more information, see :ref:`Configure the Assignment Types`.
-
 
 .. _Access_grades:
 
@@ -91,7 +90,7 @@ To download a file of student grades:
 
 #. To open or save a grade report file, click the *course_id* \_grade_report_\ *date*.csv file name at the bottom of the page.
 
-.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. Do not copy a link to save or email, as the value for the link expires within 5 minutes. The links on this page also expire if the page is open for more than 5 minutes: refresh the page to generate new links. 
+.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. Do not copy these links for reuse elsewhere, as the value for the link expires within 5 minutes. The links on this page also expire if the page is open for more than 5 minutes: refresh the page if you need to generate new links. 
 
 =========================================================
 Check the Progress of a Single Student
@@ -176,9 +175,9 @@ To find the unique identifier in the URL for a problem:
     :alt: The Staff Debug view of a problem with the unique identifier indicated at the end of a URL address
 
 
-#. To copy the identifier that is assigned to the problem, select it, right click, and choose **Copy**.
+4. To copy the identifier that is assigned to the problem, select it, right click, and choose **Copy**.
 
-   **Note:** If the URL does not include "problem/" before the identifer, you will need to specify that module identifier as well. Select and copy both the module identifer and the problem identifier.
+   **Note:** If the URL does not include "problem/" before the identifier, you will need to specify that module identifier as well. Select and copy both the module identifier and the problem identifier.
 
    To close the Staff Debug viewer, click on the browser page outside of the viewer.
 
@@ -202,15 +201,15 @@ To rescore a problem:
 
 #. Rescore the problem, either for an individual student or for all students.
 
-   * To rescore a problem for one student, you work in the **Student-Specific Grade Adjustment** section of the page. Enter the student's email address or username and the problem URL, and then click **Rescore Student Submission**.
+   To rescore a problem for one student, you work in the **Student-Specific Grade Adjustment** section of the page. Enter the student's email address or username and the problem URL, and then click **Rescore Student Submission**.
 
-   * To rescore a problem for all enrolled students, you work in the **Course-Specific Grade Adjustment** section of the page. Enter the problem URL, and then click **Rescore ALL students' problem submissions**. 
+   To rescore a problem for all enrolled students, you work in the **Course-Specific Grade Adjustment** section of the page. Enter the problem URL, and then click **Rescore ALL students' problem submissions**. 
 
-#. When you see a dialog box that notifies you that the rescore process is in progress, click **OK**. 
+5. When you see a dialog box that notifies you that the rescore process is in progress, click **OK**. 
 
    This process does not take long for a single student, but can take some time to complete for all enrolled students. The process runs in the background, so you can navigate away from this page and do other work while it runs.
 
-#. To view the results of the rescore process, click either **Show Background Task History for Student** or **Show Background Task History for Problem**.
+6. To view the results of the rescore process, click either **Show Background Task History for Student** or **Show Background Task History for Problem**.
 
    A table displays the status of the rescore process for each student or problem.
 
@@ -240,7 +239,7 @@ To reset student attempts for a problem:
 
    This process does not take long for a single student, but can take some time to complete for all enrolled students. The process runs in the background, so you can navigate away from this page and do other work while it runs.
 
-#. To view the results of the reset process, click either **Show Background Task History for Student** or **Show Background Task History for Problem**.
+7. To view the results of the reset process, click either **Show Background Task History for Student** or **Show Background Task History for Problem**.
 
    A table displays the status of the reset process for each student or problem.
 
@@ -250,11 +249,16 @@ To reset student attempts for a problem:
 Student Answer Distributions
 ****************************************
 
-For the problems in your course that use one of the common problem types, you can download a CSV file with data about the distribution of student answers. (The common problem types are checkbox, dropdown, multiple choice, numerical input, and text input.)
+For certain problems in your course, you can download a CSV file with data about the distribution of student answers. Student answer distribution data is included in the file for problems of these types: 
 
-The file includes a row for each problem-answer combination. For example, for a multiple choice problem that has five possible answers the file includes five rows. For problems that use problem randomization, there is one row for each possible problem, answer, and variation.
+* Checkboxes 
+* Dropdown
+* Multiple Choice
+* Numerical Input
+* Text Input
+* Math Expression Input 
 
-.. when released, change last sentence to "For problems that use problem randomization features, such as an answer pool or choice shuffling, there is one row for each possible problem, answer, and variation."
+The file includes a row for each problem-answer combination selected by your students. For example, for a problem that has a total of five possible answers the file includes up to five rows, one for each answer selected by at least one student. For problems that use problem randomization, there is one row for each possible problem-variant-answer combination.
 
 The CSV file contains the following columns:
 
@@ -265,23 +269,23 @@ The CSV file contains the following columns:
    * - Column
      - Description
    * - ModuleID
-     - The internal identifer for the problem component.
+     - The internal identifier for the problem component.
    * - PartID
      - For a component that contains multiple problems, the internal identifier for each problem. Blank for components that contain a single problem.
    * - ValueID
-     - The internal identifer of the answer choice for checkbox, dropdown, and multiple choice problems. Blank for numerical input and text input problems.
+     - The internal identifier of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. Blank for Numerical Input, Text Input, and Math Expression Input problems.
    * - AnswerValue
-     - The text label of the answer choice for checkbox, dropdown, and multiple choice problems. The value entered by the student for numerical input and text input problems.
+     - The text label of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. The value entered by the student for Numerical Input, Text Input, and Math Expression Input problems.
    * - Variant
-     - For problems that use problem randomization features, contains the unique identifier of this variant for the problem-answer combination. Blank for problems that do not use randomization.
+     - For problems that use problem randomization, contains the unique identifier for a variant of the problem. Blank for problems that do not use problem randomization.
    * - Problem Display Name
      - The **Display Name** defined for the problem.
    * - Question
-     - The text label that appears above the answer choices or the text entry field for the problem. In Studio's Simple Editor, this text is surrounded by two pairs of angle brackets (>>Question<<).
+     - The label for accessibility that appears above the answer choices or the text entry field for the problem. In Studio's Simple Editor, this text is surrounded by two pairs of angle brackets (>>Question<<).
    * - Correct Answer
      - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
    * - Count
-     - The number of times that all students entered or selected this answer for the problem. Each student contributes a maximum of one to this count, even if a student uses multiple attempts to provide the same answer.
+     - The number of times that all students entered or selected this answer for the problem or problem variant. Each student contributes a maximum of one to this count, even if a student uses multiple attempts to provide the same answer.
 
 .. _Download_Answer_Distributions:
 
@@ -299,9 +303,7 @@ To download the most recent file of student answer data:
 
 #. Click **Data Download**.
 
-#. At the bottom of the page, locate the link to the CSV file.
-
-.. I'd like to include the file name here.
+#. At the bottom of the page, click the *course_id*answerdistrbution.csv file name.
 
 ===================================================
 View a Histogram of Scores for a Single Problem
