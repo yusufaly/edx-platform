@@ -1,5 +1,12 @@
 from setuptools import setup, find_packages
 
+KEY_NAMESPACES = {
+    "uv1": blah,
+    "uv2": blah,
+    "cv1": blah,
+    "cv2":
+}
+
 XMODULES = [
     "abtest = xmodule.abtest_module:ABTestDescriptor",
     "book = xmodule.backcompat_module:TranslateCustomTagDescriptor",
@@ -66,6 +73,18 @@ setup(
         'xmodule.v1': XMODULES,
         'console_scripts': [
             'xmodule_assets = xmodule.static_content:main',
+        ],
+        'usage_key': [
+            "uv1 = xmodule.modulestore.Location",
+            "uv2 = xmodule.modulestore.locator.BlockUsageLocator",
+        ],
+        'course_key': [
+            "cv1 = xmodule.modulestore.locations.CourseLocation",  # TODO: We'll write this.
+            "cv2 = xmodule.moduletore.locator.CourseLocator",
+        ],
+        'definition_key': [
+            "dv1 = xmodule.modulestore.Location",  # TODO: Will we use this?
+            "dv2 = xmodule.modulestore.locator.DefinitionLocator",
         ],
     },
 )
