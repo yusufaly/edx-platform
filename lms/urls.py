@@ -478,9 +478,9 @@ if settings.COURSEWARE_ENABLED and settings.FEATURES.get('ENABLE_INSTRUCTOR_BETA
             'instructor.views.instructor_dashboard.instructor_dashboard_2', name="instructor_dashboard_2"),
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/instructor_dashboard/api/',
-            include('instructor.views.api_urls'))
+            include('instructor.views.api_urls')),
         url(r'^courses/(?P<course_id>[^/]+)/instructor_dashboard/api/',
-            include('instructor.views.api_urls'))
+            include('instructor.views.api_urls')),
     )
 
 if settings.FEATURES.get('CLASS_DASHBOARD'):
