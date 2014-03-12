@@ -66,6 +66,7 @@ def staff_grading(request, course_id):
     """
     Show the instructor grading interface.
     """
+    course_id = CourseKey._from_string(course_id)
     course = get_course_with_access(request.user, course_id, 'staff')
 
     ajax_url = _reverse_with_slash('staff_grading', course_id)
@@ -144,6 +145,7 @@ def student_problem_list(request, course_id):
     @param course_id: The id of the course to get the problem list for.
     @return: Renders an HTML problem list table.
     """
+    course_id = CourseKey._from_string(course_id)
 
     # Load the course.  Don't catch any errors here, as we want them to be loud.
     course = get_course_with_access(request.user, course_id, 'load')
@@ -185,6 +187,7 @@ def flagged_problem_list(request, course_id):
     '''
     Show a student problem list
     '''
+    course_id = CourseKey._from_string(course_id)
     course = get_course_with_access(request.user, course_id, 'staff')
     student_id = unique_id_for_user(request.user)
 
@@ -301,6 +304,7 @@ def take_action_on_flags(request, course_id):
     Takes action on student flagged submissions.
     Currently, only support unflag and ban actions.
     """
+    course_id = CourseKey._from_string(course_id)
     if request.method != 'POST':
         raise Http404
 

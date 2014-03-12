@@ -43,6 +43,7 @@ class MockStaffGradingService(object):
         self.cnt = 0
 
     def get_next(self, course_id, location, grader_id):
+        course_id = CourseKey._from_string(course_id)
         self.cnt += 1
         return json.dumps({'success': True,
                            'submission_id': self.cnt,
@@ -56,6 +57,7 @@ class MockStaffGradingService(object):
                            'rubric': 'A rubric'})
 
     def get_problem_list(self, course_id, grader_id):
+        course_id = CourseKey._from_string(course_id)
         self.cnt += 1
         return json.dumps({'success': True,
                            'problem_list': [
@@ -69,6 +71,7 @@ class MockStaffGradingService(object):
 
     def save_grade(self, course_id, grader_id, submission_id, score, feedback, skipped, rubric_scores,
                    submission_flagged):
+        course_id = CourseKey._from_string(course_id)
         return self.get_next(course_id, 'fake location', grader_id)
 
 
@@ -113,6 +116,7 @@ class StaffGradingService(GradingService):
         Raises:
             GradingServiceError: something went wrong with the connection.
         """
+        course_id = CourseKey._from_string(course_id)
         params = {'course_id': course_id, 'grader_id': grader_id}
         return self.get(self.get_problem_list_url, params)
 
@@ -134,6 +138,7 @@ class StaffGradingService(GradingService):
         Raises:
             GradingServiceError: something went wrong with the connection.
         """
+        course_id = CourseKey._from_string(course_id)
         response = self.get(self.get_next_url,
                             params={'location': location,
                                     'grader_id': grader_id})
@@ -152,6 +157,7 @@ class StaffGradingService(GradingService):
         Raises:
             GradingServiceError if there's a problem connecting.
         """
+        course_id = CourseKey._from_string(course_id)
         data = {'course_id': course_id,
                 'submission_id': submission_id,
                 'score': score,

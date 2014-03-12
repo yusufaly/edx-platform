@@ -32,6 +32,7 @@ def course_wiki_redirect(request, course_id):
     as it's home page. A course's wiki must be an article on the root (for
     example, "/6.002x") to keep things simple.
     """
+    course_id = CourseKey._from_string(course_id)
     course = get_course_by_id(course_id)
     course_slug = course_wiki_slug(course)
 

@@ -174,7 +174,7 @@ if settings.WIKI_ENABLED:
         # These urls are for viewing the wiki in the context of a course. They should
         # never be returned by a reverse() so they come after the other url patterns
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/course_wiki/?$',
-            'course_wiki.views.course_wiki_redirect', name="course_wiki"),
+            'course_wiki.views.course_wiki_redirect', name="course_wiki"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/course_wiki/?$',
             'course_wiki.views.course_wiki_redirect', name="course_wiki"),
         url(r'^courses/(?:[^/]+/[^/]+/[^/]+)/wiki/', include(wiki_pattern())),
@@ -185,22 +185,22 @@ if settings.COURSEWARE_ENABLED:
     urlpatterns += (
         # We'll have two patterns for everything.
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/jump_to/(?P<location>.*)$',
-            'courseware.views.jump_to', name="jump_to"),
+            'courseware.views.jump_to', name="jump_to"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/jump_to/(?P<location>.*)$',
             'courseware.views.jump_to', name="jump_to"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/jump_to_id/(?P<module_id>.*)$',
-            'courseware.views.jump_to_id', name="jump_to_id"),
+            'courseware.views.jump_to_id', name="jump_to_id"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/jump_to_id/(?P<module_id>.*)$',
             'courseware.views.jump_to_id', name="jump_to_id"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/xblock/(?P<usage_id>[^/]*)/handler/(?P<handler>[^/]*)(?:/(?P<suffix>.*))?$',
             'courseware.module_render.handle_xblock_callback',
-            name='xblock_handler'),
+            name='xblock_handler'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/xblock/(?P<usage_id>[^/]*)/handler/(?P<handler>[^/]*)(?:/(?P<suffix>.*))?$',
             'courseware.module_render.handle_xblock_callback',
             name='xblock_handler'),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/xblock/(?P<usage_id>[^/]*)/handler_noauth/(?P<handler>[^/]*)(?:/(?P<suffix>.*))?$',
             'courseware.module_render.handle_xblock_callback_noauth',
-            name='xblock_handler_noauth'),
+            name='xblock_handler_noauth'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/xblock/(?P<usage_id>[^/]*)/handler_noauth/(?P<handler>[^/]*)(?:/(?P<suffix>.*))?$',
             'courseware.module_render.handle_xblock_callback_noauth',
             name='xblock_handler_noauth'),
@@ -218,7 +218,7 @@ if settings.COURSEWARE_ENABLED:
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/xqueue/(?P<userid>[^/]*)/(?P<mod_id>.*?)/(?P<dispatch>[^/]*)$',
             'courseware.module_render.xqueue_callback',
-            name='xqueue_callback'),
+            name='xqueue_callback'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/xqueue/(?P<userid>[^/]*)/(?P<mod_id>.*?)/(?P<dispatch>[^/]*)$',
             'courseware.module_render.xqueue_callback',
             name='xqueue_callback'),
@@ -238,12 +238,12 @@ if settings.COURSEWARE_ENABLED:
 
         #About the course
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/about$',
-            'courseware.views.course_about', name="about_course"),
+            'courseware.views.course_about', name="about_course"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/about$',
             'courseware.views.course_about', name="about_course"),
         #View for mktg site (kept for backwards compatibility TODO - remove before merge to master)
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/mktg-about$',
-            'courseware.views.mktg_course_about', name="mktg_about_course"),
+            'courseware.views.mktg_course_about', name="mktg_about_course"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/mktg-about$',
             'courseware.views.mktg_course_about', name="mktg_about_course"),
         #View for mktg site
@@ -252,144 +252,144 @@ if settings.COURSEWARE_ENABLED:
 
         #Inside the course
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/$',
-            'courseware.views.course_info', name="course_root"),
+            'courseware.views.course_info', name="course_root"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/$',
             'courseware.views.course_info', name="course_root"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/info$',
-            'courseware.views.course_info', name="info"),
+            'courseware.views.course_info', name="info"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/info$',
             'courseware.views.course_info', name="info"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/syllabus$',
-            'courseware.views.syllabus', name="syllabus"),
+            'courseware.views.syllabus', name="syllabus"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/syllabus$',
             'courseware.views.syllabus', name="syllabus"),   # TODO arjun remove when custom tabs in place, see courseware/courses.py
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/book/(?P<book_index>\d+)/$',
-            'staticbook.views.index', name="book"),
+            'staticbook.views.index', name="book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/book/(?P<book_index>\d+)/$',
             'staticbook.views.index', name="book"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/book/(?P<book_index>\d+)/(?P<page>\d+)$',
-            'staticbook.views.index', name="book"),
+            'staticbook.views.index', name="book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/book/(?P<book_index>\d+)/(?P<page>\d+)$',
             'staticbook.views.index', name="book"),
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/pdfbook/(?P<book_index>\d+)/$',
-            'staticbook.views.pdf_index', name="pdf_book"),
+            'staticbook.views.pdf_index', name="pdf_book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/pdfbook/(?P<book_index>\d+)/$',
             'staticbook.views.pdf_index', name="pdf_book"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/pdfbook/(?P<book_index>\d+)/(?P<page>\d+)$',
-            'staticbook.views.pdf_index', name="pdf_book"),
+            'staticbook.views.pdf_index', name="pdf_book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/pdfbook/(?P<book_index>\d+)/(?P<page>\d+)$',
             'staticbook.views.pdf_index', name="pdf_book"),
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/pdfbook/(?P<book_index>\d+)/chapter/(?P<chapter>\d+)/$',
-            'staticbook.views.pdf_index', name="pdf_book"),
+            'staticbook.views.pdf_index', name="pdf_book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/pdfbook/(?P<book_index>\d+)/chapter/(?P<chapter>\d+)/$',
             'staticbook.views.pdf_index', name="pdf_book"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/pdfbook/(?P<book_index>\d+)/chapter/(?P<chapter>\d+)/(?P<page>\d+)$',
-            'staticbook.views.pdf_index', name="pdf_book"),
+            'staticbook.views.pdf_index', name="pdf_book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/pdfbook/(?P<book_index>\d+)/chapter/(?P<chapter>\d+)/(?P<page>\d+)$',
             'staticbook.views.pdf_index', name="pdf_book"),
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/htmlbook/(?P<book_index>\d+)/$',
-            'staticbook.views.html_index', name="html_book"),
+            'staticbook.views.html_index', name="html_book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/htmlbook/(?P<book_index>\d+)/$',
             'staticbook.views.html_index', name="html_book"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/htmlbook/(?P<book_index>\d+)/chapter/(?P<chapter>\d+)/$',
-            'staticbook.views.html_index', name="html_book"),
+            'staticbook.views.html_index', name="html_book"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/htmlbook/(?P<book_index>\d+)/chapter/(?P<chapter>\d+)/$',
             'staticbook.views.html_index', name="html_book"),
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/courseware/?$',
-            'courseware.views.index', name="courseware"),
+            'courseware.views.index', name="courseware"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/courseware/?$',
             'courseware.views.index', name="courseware"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/courseware/(?P<chapter>[^/]*)/$',
-            'courseware.views.index', name="courseware_chapter"),
+            'courseware.views.index', name="courseware_chapter"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/courseware/(?P<chapter>[^/]*)/$',
             'courseware.views.index', name="courseware_chapter"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/courseware/(?P<chapter>[^/]*)/(?P<section>[^/]*)/$',
-            'courseware.views.index', name="courseware_section"),
+            'courseware.views.index', name="courseware_section"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/courseware/(?P<chapter>[^/]*)/(?P<section>[^/]*)/$',
             'courseware.views.index', name="courseware_section"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/courseware/(?P<chapter>[^/]*)/(?P<section>[^/]*)/(?P<position>[^/]*)/?$',
-            'courseware.views.index', name="courseware_position"),
+            'courseware.views.index', name="courseware_position"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/courseware/(?P<chapter>[^/]*)/(?P<section>[^/]*)/(?P<position>[^/]*)/?$',
             'courseware.views.index', name="courseware_position"),
 
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/progress$',
-            'courseware.views.progress', name="progress"),
+            'courseware.views.progress', name="progress"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/progress$',
             'courseware.views.progress', name="progress"),
         # Takes optional student_id for instructor use--shows profile as that student sees it.
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/progress/(?P<student_id>[^/]*)/$',
-            'courseware.views.progress', name="student_progress"),
+            'courseware.views.progress', name="student_progress"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/progress/(?P<student_id>[^/]*)/$',
             'courseware.views.progress', name="student_progress"),
 
         # For the instructor
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/instructor$',
-            'instructor.views.legacy.instructor_dashboard', name="instructor_dashboard"),
+            'instructor.views.legacy.instructor_dashboard', name="instructor_dashboard"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/instructor$',
             'instructor.views.legacy.instructor_dashboard', name="instructor_dashboard"),
 
         # see ENABLE_INSTRUCTOR_BETA_DASHBOARD section for more urls
 
-        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/gradebook$',
+        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/gradebook$',  #DONE
             'instructor.views.legacy.gradebook', name='gradebook'),
         url(r'^courses/(?P<course_id>[^/]+)/gradebook$',
             'instructor.views.legacy.gradebook', name='gradebook'),
-        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/grade_summary$',
+        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/grade_summary$',  #DONE
             'instructor.views.legacy.grade_summary', name='grade_summary'),
         url(r'^courses/(?P<course_id>[^/]+)/grade_summary$',
             'instructor.views.legacy.grade_summary', name='grade_summary'),
-        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/staff_grading$',
+        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/staff_grading$',  #DONE
             'open_ended_grading.views.staff_grading', name='staff_grading'),
         url(r'^courses/(?P<course_id>[^/]+)/staff_grading$',
             'open_ended_grading.views.staff_grading', name='staff_grading'),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/staff_grading/get_next$',
-            'open_ended_grading.staff_grading_service.get_next', name='staff_grading_get_next'),
+            'open_ended_grading.staff_grading_service.get_next', name='staff_grading_get_next'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/staff_grading/get_next$',
             'open_ended_grading.staff_grading_service.get_next', name='staff_grading_get_next'),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/staff_grading/save_grade$',
-            'open_ended_grading.staff_grading_service.save_grade', name='staff_grading_save_grade'),
+            'open_ended_grading.staff_grading_service.save_grade', name='staff_grading_save_grade'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/staff_grading/save_grade$',
             'open_ended_grading.staff_grading_service.save_grade', name='staff_grading_save_grade'),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/staff_grading/get_problem_list$',
-            'open_ended_grading.staff_grading_service.get_problem_list', name='staff_grading_get_problem_list'),
+            'open_ended_grading.staff_grading_service.get_problem_list', name='staff_grading_get_problem_list'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/staff_grading/get_problem_list$',
             'open_ended_grading.staff_grading_service.get_problem_list', name='staff_grading_get_problem_list'),
 
         # Open Ended problem list
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/open_ended_problems$',
-            'open_ended_grading.views.student_problem_list', name='open_ended_problems'),
+            'open_ended_grading.views.student_problem_list', name='open_ended_problems'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/open_ended_problems$',
             'open_ended_grading.views.student_problem_list', name='open_ended_problems'),
 
         # Open Ended flagged problem list
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/open_ended_flagged_problems$',
-            'open_ended_grading.views.flagged_problem_list', name='open_ended_flagged_problems'),
+            'open_ended_grading.views.flagged_problem_list', name='open_ended_flagged_problems'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/open_ended_flagged_problems$',
             'open_ended_grading.views.flagged_problem_list', name='open_ended_flagged_problems'),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/open_ended_flagged_problems/take_action_on_flags$',
-            'open_ended_grading.views.take_action_on_flags', name='open_ended_flagged_problems_take_action'),
+            'open_ended_grading.views.take_action_on_flags', name='open_ended_flagged_problems_take_action'),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/open_ended_flagged_problems/take_action_on_flags$',
             'open_ended_grading.views.take_action_on_flags', name='open_ended_flagged_problems_take_action'),
 
         # Cohorts management
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/cohorts$',
-            'course_groups.views.list_cohorts', name="cohorts"),
+            'course_groups.views.list_cohorts', name="cohorts"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/cohorts$',
             'course_groups.views.list_cohorts', name="cohorts"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/cohorts/add$',
             'course_groups.views.add_cohort',
-            name="add_cohort"),
+            name="add_cohort"),  #DONE
         url(r'^courses/(?P<course_id>[^/]+)/cohorts/add$',
             'course_groups.views.add_cohort',
             name="add_cohort"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/cohorts/(?P<cohort_id>[0-9]+)$',
             'course_groups.views.users_in_cohort',
-            name="list_cohort"),
+            name="list_cohort"),  # DONE
         url(r'^courses/(?P<course_id>[^/]+)/cohorts/(?P<cohort_id>[0-9]+)$',
             'course_groups.views.users_in_cohort',
             name="list_cohort"),

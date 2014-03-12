@@ -40,6 +40,7 @@ def list_cohorts(request, course_id):
     {'success': True,
      'cohorts': [{'name': name, 'id': id}, ...]}
     """
+    course_id = CourseKey._from_string(course_id)
     get_course_with_access(request.user, course_id, 'staff')
 
     all_cohorts = [{'name': c.name, 'id': c.id}
@@ -63,6 +64,7 @@ def add_cohort(request, course_id):
     {'success': False,
      'msg': error_msg} if there's an error
     """
+    course_id = CourseKey._from_string(course_id)
     get_course_with_access(request.user, course_id, 'staff')
 
     name = request.POST.get("name")
@@ -97,6 +99,7 @@ def users_in_cohort(request, course_id, cohort_id):
          'users': [{'username': ..., 'email': ..., 'name': ...}]
     }
     """
+    course_id = CourseKey._from_string(course_id)
     get_course_with_access(request.user, course_id, 'staff')
 
     # this will error if called with a non-int cohort_id.  That's ok--it
@@ -142,6 +145,7 @@ def add_users_to_cohort(request, course_id, cohort_id):
      'present': [str1, str2, ...],    # already there
      'unknown': [str1, str2, ...]}
     """
+    course_id = CourseKey._from_string(course_id)
     get_course_with_access(request.user, course_id, 'staff')
 
     cohort = cohorts.get_cohort_by_id(course_id, cohort_id)

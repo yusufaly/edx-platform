@@ -481,6 +481,7 @@ def xqueue_callback(request, course_id, userid, mod_id, dispatch):
     '''
     Entry point for graded results from the queueing system.
     '''
+    course_id = CourseKey._from_string(course_id)
     data = request.POST.copy()
 
     # Test xqueue package, which we expect to be:
@@ -519,6 +520,7 @@ def handle_xblock_callback_noauth(request, course_id, usage_id, handler, suffix=
     """
     Entry point for unauthenticated XBlock handlers.
     """
+    course_id = CourseKey._from_string(course_id)
     request.user.known = False
 
     return _invoke_xblock_handler(request, course_id, usage_id, handler, suffix, request.user)
@@ -539,6 +541,7 @@ def handle_xblock_callback(request, course_id, usage_id, handler, suffix=None):
     not accessible by the user, or the module raises NotFoundError. If the
     module raises any other error, it will escape this function.
     """
+    course_id = CourseKey._from_string(course_id)
     if not request.user.is_authenticated():
         raise PermissionDenied
 
