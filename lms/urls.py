@@ -181,9 +181,10 @@ if settings.WIKI_ENABLED:
 
 if settings.COURSEWARE_ENABLED:
     urlpatterns += (
-        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/jump_to/(?P<location>.*)$',
+        # We'll have two patterns for everything.
+        url(r'^courses/(?P<course_id>[^/]+)/jump_to/(?P<location>.*)$',
             'courseware.views.jump_to', name="jump_to"),
-        url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/jump_to_id/(?P<module_id>.*)$',
+        url(r'^courses/(?P<course_id>[^/]+)/jump_to_id/(?P<module_id>.*)$',
             'courseware.views.jump_to_id', name="jump_to_id"),
         url(r'^courses/(?P<course_id>[^/]+/[^/]+/[^/]+)/xblock/(?P<usage_id>[^/]*)/handler/(?P<handler>[^/]*)(?:/(?P<suffix>.*))?$',
             'courseware.module_render.handle_xblock_callback',

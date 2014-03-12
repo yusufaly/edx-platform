@@ -3,28 +3,25 @@
 from xmodule.modulestore.keys import CourseKey
 
 class CourseLocation(CourseKey):
+    def __init__(org, course, run):
+        self.org = org
+        self.course = course
+        self.run = run
+
     # three local attributes: catalog name, run
 
     @classmethod
     def _from_string(cls, serialized):
-        # Do we need to worry about the goofy i4x case?
-        org, course, run = serialized.split('/')
-        return match.groupdict()
-        # pase_course_id
-        # Two forms for serialized: one we haven't decided, one that is org/course/run everywhere (d/c)
-        pass
+        # Turns encoded slashes into actual slashes
+        serialized = django.utils.http.unquote(serialized)
+        return cls(* serialized.split('/'))
 
     def _to_string(self):
-        # reverse from_string
-        pass
+        # Turns slashes into encoded slashes
+        return "%2F".join(self.org, self.course, self.run)
 
     def org(self):
-        # return prop
-        pass
+        return self.org
 
     def run(self):
-        # return prop
-
-        pass
-
-        # try not to add url parseable things
+        return self.run
