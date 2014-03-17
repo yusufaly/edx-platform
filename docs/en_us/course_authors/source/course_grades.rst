@@ -272,6 +272,10 @@ The CSV file contains the following columns:
      - The internal identifier for the problem component.
    * - PartID
      - For a component that contains multiple problems, the internal identifier for each problem. Blank for components that contain a single problem.
+   * - Correct Answer
+     - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
+   * - Count
+     - The number of times that all students entered or selected this answer for the problem or problem variant. Each student contributes a maximum of one to this count, even if a student uses multiple attempts to provide the same answer.
    * - ValueID
      - The internal identifier of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. Blank for Numerical Input, Text Input, and Math Expression Input problems.
    * - AnswerValue
@@ -282,10 +286,8 @@ The CSV file contains the following columns:
      - The **Display Name** defined for the problem.
    * - Question
      - The label for accessibility that appears above the answer choices or the text entry field for the problem. In Studio's Simple Editor, this text is surrounded by two pairs of angle brackets (>>Question<<).
-   * - Correct Answer
-     - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
-   * - Count
-     - The number of times that all students entered or selected this answer for the problem or problem variant. Each student contributes a maximum of one to this count, even if a student uses multiple attempts to provide the same answer.
+
+Entries are sorted by the value in each column, starting with the ModuleID on the left and continuing through the columns to the right.
 
 .. _Download_Answer_Distributions:
 
