@@ -143,9 +143,9 @@ To close the Submission History Viewer, click on the browser page outside of the
 Adjust Grades
 ***********************************
 
-You can adjust grades for one student at a time, or for all of the enrolled students in the course. For example, your course beta testers can evaluate numerous different correct and incorrect responses to verify that your course is set up as you intend. Students can also report problems while a course is running. 
+You can adjust grades for one student at a time, or for all of the enrolled students in the course. For example, your course beta testers can evaluate numerous different correct and incorrect responses to verify that your course is set up as you intend. Students can also report errors while a course is running. 
 
-When an error is discovered or corrected, or if you modify a problem after students or beta testers have attempted to answer it, you can either:
+When an error is discovered or corrected, or if you decide that you must modify a problem after students or beta testers have attempted to answer it, you can either:
 
 * Rescore the submitted answers to reevaluate the work.
 
@@ -156,7 +156,7 @@ To make these adjustments, you need to specify a problem by supplying the unique
 .. _find_URL:
 
 ==================================================
-Find the URL for a Problem
+Find the Unique Identifier for a Problem
 ==================================================
 
 When you create each of the problems for a course, edX assigns a unique identifier. To make grading adjustments for a problem, or to view data about it, you need to specify this identifier.
@@ -201,9 +201,9 @@ To rescore a problem:
 
 #. Rescore the problem, either for an individual student or for all students.
 
-   To rescore a problem for one student, you work in the **Student-Specific Grade Adjustment** section of the page. Enter the student's email address or username and the problem URL, and then click **Rescore Student Submission**.
+   To rescore a problem for one student, you work in the **Student-Specific Grade Adjustment** section of the page. Enter the student's email address or username and the unique problem identifier, and then click **Rescore Student Submission**.
 
-   To rescore a problem for all enrolled students, you work in the **Course-Specific Grade Adjustment** section of the page. Enter the problem URL, and then click **Rescore ALL students' problem submissions**. 
+   To rescore a problem for all enrolled students, you work in the **Course-Specific Grade Adjustment** section of the page. Enter the unique problem identifier, and then click **Rescore ALL students' problem submissions**. 
 
 5. When you see a dialog box that notifies you that the rescore process is in progress, click **OK**. 
 
@@ -219,7 +219,7 @@ Reset Student Attempts
 
 When you create a problem, you can limit the number of times that a student can try to answer that problem correctly. If unexpected issues occur for a problem, you can reset the value for one particular student's attempts back to zero so that the student can begin work over again. If the unexpected behavior affects all of the students in your course, you can reset the number of attempts for all students to zero. 
 
-For more information about modifying a released problem, including other workarounds, see :ref:`Modifying a Released Problem`.
+For information about modifying a released problem, including other workarounds, see :ref:`Modifying a Released Problem`.
 
 .. note:: To reset the number of attempts for a problem, you need its unique identifier. See :ref:`find_URL`.
 
@@ -231,9 +231,9 @@ To reset student attempts for a problem:
 
 #. Click **Student Admin**. 
 
-#. To reset the number of attempts for one student, you work in the Student-Specific Grade Adjustment section of the page. Enter the student's email address or username and the problem URL then click **Reset Student Attempts**.
+#. To reset the number of attempts for one student, you work in the Student-Specific Grade Adjustment section of the page. Enter the student's email address or username and the unique problem identifier then click **Reset Student Attempts**.
 
-#. To reset the number of attempts for all enrolled students, you work in the Course-Specific Grade Adjustment section of the page. Enter the problem URL then click **Reset ALL students' attempts**. 
+#. To reset the number of attempts for all enrolled students, you work in the Course-Specific Grade Adjustment section of the page. Enter the unique problem identifier then click **Reset ALL students' attempts**. 
 
 #. A dialog opens to indicate that the reset process is in progress. Click **OK**. 
 
@@ -246,17 +246,17 @@ To reset student attempts for a problem:
 .. _Review_Answers:
 
 ****************************************
-Student Answer Distributions
+Student Answer Distribution
 ****************************************
 
 For certain problems in your course, you can download a CSV file with data about the distribution of student answers. Student answer distribution data is included in the file for problems of these types: 
 
-* Checkboxes 
-* Dropdown
-* Multiple Choice
-* Numerical Input
-* Text Input
-* Math Expression Input 
+* Checkboxes (``<choiceresponse>``)
+* Dropdown (``<optionresponse>``)
+* Multiple Choice (``<multiplechoiceresponse>``)
+* Numerical Input (``<numericalresponse>``)
+* Text Input (``<stringresponse>``)
+* Math Expression Input (``<formularesponse>``)
 
 The file includes a row for each problem-answer combination selected by your students. For example, for a problem that has a total of five possible answers the file includes up to five rows, one for each answer selected by at least one student. For problems that use problem randomization, there is one row for each possible problem-variant-answer combination.
 
@@ -279,7 +279,7 @@ The CSV file contains the following columns:
    * - ValueID
      - The internal identifier of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. Blank for Numerical Input, Text Input, and Math Expression Input problems.
    * - AnswerValue
-     - The text label of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. The value entered by the student for Numerical Input, Text Input, and Math Expression Input problems.
+     - The text label of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. The value entered by the student for Numerical Input, Text Input, and Math Expression Input problems. 
    * - Variant
      - For problems that use problem randomization, contains the unique identifier for a variant of the problem. Blank for problems that do not use problem randomization.
    * - Problem Display Name
@@ -305,7 +305,7 @@ To download the most recent file of student answer data:
 
 #. Click **Data Download**.
 
-#. At the bottom of the page, click the *course_id*answerdistrbution.csv file name.
+#. At the bottom of the page, click the *course_id*answerdistribution.csv file name.
 
 ===================================================
 View a Histogram of Scores for a Single Problem
@@ -323,7 +323,7 @@ To display the distribution of scores for a problem:
 
 #. Click **Analytics**. 
 
-#. In the Grade Distribution section, select a problem by using its URL. 
+#. In the Score Distribution section, select a problem by using its unique identifier. 
 
    A histogram of scores for that problem displays.
 
