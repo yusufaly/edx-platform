@@ -5,6 +5,8 @@ These are notable changes in edx-platform.  This is a rolling list of changes,
 in roughly chronological order, most recent first.  Add your entries at or near
 the top.  Include a label indicating the component affected.
 
+Studio: Add edit button to leaf xblocks on the container page. STUD-1306.
+
 Studio: Add ability to reorder Pages and hide the Wiki page. STUD-1375
 
 Blades: Added template for iFrames. BLD-611.
