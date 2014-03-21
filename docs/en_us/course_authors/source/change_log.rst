@@ -10,7 +10,9 @@ Change Log
 
    * - Date
      - Change
-   * - 3/19/14
+   * - 03/21/14
+     - Updated the chapter :ref:`Working with HTML Components` to reflect the new HTML editor.
+   * - 03/19/14
      - Updated the sections on :ref:`Beta_Testing`, :ref:`Discussions`, :ref:`Grades`, and :ref:`Student Data` with changes to the new Instructor Dashboard.
    * - 03/17/14
      - Reorganized this document into major sections: 
