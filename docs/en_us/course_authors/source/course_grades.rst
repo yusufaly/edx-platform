@@ -88,9 +88,9 @@ To download a file of student grades:
 
 #. Click **Data Download**.
 
-#. To open or save a grade report file, click the *course_id* \_grade_report_\ *date*.csv file name at the bottom of the page.
+#. To open or save a grade report file, click the ``{course_id}_grade_report_{date}.csv`` file name at the bottom of the page.
 
-.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. Do not copy these links for reuse elsewhere, as the value for the link expires within 5 minutes. The links on this page also expire if the page is open for more than 5 minutes: refresh the page if you need to generate new links. 
+.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. Do not copy these links for reuse elsewhere, as the link expires within 5 minutes. The links on this page also expire if the page is open for more than 5 minutes: refresh the page to generate new links. 
 
 =========================================================
 Check the Progress of a Single Student
@@ -258,7 +258,7 @@ For certain problems in your course, you can download a CSV file with data about
 * Text Input (``<stringresponse>``)
 * Math Expression Input (``<formularesponse>``)
 
-The file includes a row for each problem-answer combination selected by your students. For example, for a problem that has a total of five possible answers the file includes up to five rows, one for each answer selected by at least one student. For problems that use problem randomization, there is one row for each possible problem-variant-answer combination.
+The file includes a row for each problem-answer combination selected by your students. For example, for a problem that has a total of five possible answers the file includes up to five rows, one for each answer selected by at least one student. For problems that use rerandomization (the **Randomization** setting in Studio), there is one row for each possible problem-variant-answer combination.
 
 The CSV file contains the following columns:
 
@@ -271,23 +271,33 @@ The CSV file contains the following columns:
    * - ModuleID
      - The internal identifier for the problem component.
    * - PartID
-     - For a component that contains multiple problems, the internal identifier for each problem. Blank for components that contain a single problem.
+     - For a Problem component that contains multiple problems, the internal identifier for each individual problem. Blank for Problem components that contain a single problem.
    * - Correct Answer
      - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
    * - Count
-     - The number of times that all students entered or selected this answer for the problem or problem variant. Each student contributes a maximum of one to this count, even if a student uses multiple attempts to provide the same answer.
+     - The number of times that all students entered or selected this answer for the problem or problem variant. Each student contributes a maximum of 1 to this count, even if a student uses multiple attempts to provide the same answer.
    * - ValueID
      - The internal identifier of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. Blank for Numerical Input, Text Input, and Math Expression Input problems.
    * - AnswerValue
      - The text label of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. The value entered by the student for Numerical Input, Text Input, and Math Expression Input problems. 
    * - Variant
-     - For problems that use problem randomization, contains the unique identifier for a variant of the problem. Blank for problems that do not use problem randomization.
+     - For problems that use the **Randomization** setting in Studio, contains the unique identifier for a variant of the problem. Blank for problems that do not use the **Randomization** setting.
    * - Problem Display Name
      - The **Display Name** defined for the problem.
    * - Question
-     - The label for accessibility that appears above the answer choices or the text entry field for the problem. In Studio's Simple Editor, this text is surrounded by two pairs of angle brackets (>>Question<<).
+     - The label for accessibility that appears above the answer choices or the text entry field for the problem. In Studio's Simple Editor, this text is surrounded by two pairs of angle brackets (>>Question<<). Blank for questions that do not have an accessibility label defined.
 
 Entries are sorted by the value in each column, starting with the ModuleID on the left and continuing through the columns to the right.
+
+**Notes**: 
+
+  * Spreadsheet applications such as Microsoft Excel can alter the data in the CSV report for display purposes. For example, for different student answers of "0000" and "0", Excel correctly includes two different lines, but displays the **AnswerValue** on both of them as "0". If you notice answers that appear to be the same on separate lines with separate counts, review the raw data by opening the CSV file in a text editor.
+
+  * If you change a problem after it is released, the problem **Count** values reflect the entire problem history. It may not be possible for you to determine which answers were given before and after you made the change.
+
+  * Due to database changes, this report includes activity that occurred after October 2013 only. 
+
+  * For Checkboxes, Dropdown, and Multiple Choice problems added after October 2013, but with no activity after early March 2014, the **AnswerValue** displays a generic label (such as choice_1, choice_2) rather than the actual text label. 
 
 .. _Download_Answer_Distributions:
 
@@ -305,7 +315,7 @@ To download the most recent file of student answer data:
 
 #. Click **Data Download**.
 
-#. At the bottom of the page, click the *course_id*answerdistribution.csv file name.
+#. At the bottom of the page, click the ``{course_id}_answer_distribution.csv`` file name.
 
 ===================================================
 View a Histogram of Scores for a Single Problem
@@ -328,6 +338,6 @@ To display the distribution of scores for a problem:
    A histogram of scores for that problem displays.
 
    .. image:: Images/score_histogram.png
-     :alt: Graph of the numbers of students who got different grades for a selected problem
+     :alt: Graph of the numbers of students who got different scores for a selected problem
 
 ..  **Question**: (sent to Olga 31 Jan 14) this is a tough UI to use: how do they correlate the codes in this drop-down with actual constructed problems? the copy-and-paste UI on the Student Admin page actually works a little better imo.
