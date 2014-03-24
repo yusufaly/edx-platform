@@ -14,7 +14,7 @@ You can review information about how grading is configured for your course, and 
 
 To review student answers to the problems in your course, you can download data for course problems or review a graph for a selected problem. See :ref:`Review_Answers`.
 
-For information about how you establish a grading policy and work with the problem components in your course, see :ref:`Establish a Grading Policy` or :ref:`Working with Problem Components`.
+For information about how you establish a grading policy and work with the Problem components in your course, see :ref:`Establish a Grading Policy` or :ref:`Working with Problem Components`.
 
 **Important**: If you make changes to your grading policy after a course starts, students can see the effect of your changes on their Progress pages. Be sure to announce any changes on your Course Info page.
 
@@ -90,7 +90,7 @@ To download a file of student grades:
 
 #. To open or save a grade report file, click the ``{course_id}_grade_report_{date}.csv`` file name at the bottom of the page.
 
-.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. Do not copy these links for reuse elsewhere, as the link expires within 5 minutes. The links on this page also expire if the page is open for more than 5 minutes: refresh the page to generate new links. 
+.. note:: To prevent the accidental distribution of student data, you can only download these files by clicking the links on this page. Do not copy these links for reuse elsewhere, as they expire within 5 minutes. The links on this page also expire if the page is open for more than 5 minutes: if necessary, refresh the page to generate new links. 
 
 =========================================================
 Check the Progress of a Single Student
@@ -231,7 +231,7 @@ To reset student attempts for a problem:
 
 #. Click **Student Admin**. 
 
-#. To reset the number of attempts for one student, you work in the Student-Specific Grade Adjustment section of the page. Enter the student's email address or username and the unique problem identifier then click **Reset Student Attempts**.
+#. To reset the number of attempts for one student, you work in the Student-Specific Grade Adjustment section of the page. Enter the student's email address or username and the unique problem identifier, then click **Reset Student Attempts**.
 
 #. To reset the number of attempts for all enrolled students, you work in the Course-Specific Grade Adjustment section of the page. Enter the unique problem identifier then click **Reset ALL students' attempts**. 
 
@@ -253,10 +253,10 @@ For certain problems in your course, you can download a CSV file with data about
 
 * Checkboxes (``<choiceresponse>``)
 * Dropdown (``<optionresponse>``)
-* Multiple Choice (``<multiplechoiceresponse>``)
-* Numerical Input (``<numericalresponse>``)
-* Text Input (``<stringresponse>``)
-* Math Expression Input (``<formularesponse>``)
+* Multiple choice (``<multiplechoiceresponse>``)
+* Numerical input (``<numericalresponse>``)
+* Text input (``<stringresponse>``)
+* Math expression input (``<formularesponse>``)
 
 The file includes a row for each problem-answer combination selected by your students. For example, for a problem that has a total of five possible answers the file includes up to five rows, one for each answer selected by at least one student. For problems that use rerandomization (the **Randomization** setting in Studio), there is one row for each possible problem-variant-answer combination.
 
@@ -269,7 +269,7 @@ The CSV file contains the following columns:
    * - Column
      - Description
    * - ModuleID
-     - The internal identifier for the problem component.
+     - The internal identifier for the Problem component.
    * - PartID
      - For a Problem component that contains multiple problems, the internal identifier for each individual problem. Blank for Problem components that contain a single problem.
    * - Correct Answer
@@ -277,9 +277,9 @@ The CSV file contains the following columns:
    * - Count
      - The number of times that all students entered or selected this answer for the problem or problem variant. Each student contributes a maximum of 1 to this count, even if a student uses multiple attempts to provide the same answer.
    * - ValueID
-     - The internal identifier of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. Blank for Numerical Input, Text Input, and Math Expression Input problems.
+     - The internal identifier of the answer choice for checkboxes, dropdown, and multiple choice problems. Blank for numerical input, text input, and math expression input problems.
    * - AnswerValue
-     - The text label of the answer choice for Checkboxes, Dropdown, and Multiple Choice problems. The value entered by the student for Numerical Input, Text Input, and Math Expression Input problems. 
+     - The text label of the answer choice for checkboxes, dropdown, and multiple choice problems. The value entered by the student for numerical input, text input, and math expression input problems. 
    * - Variant
      - For problems that use the **Randomization** setting in Studio, contains the unique identifier for a variant of the problem. Blank for problems that do not use the **Randomization** setting.
    * - Problem Display Name
@@ -297,7 +297,7 @@ Entries are sorted by the value in each column, starting with the ModuleID on th
 
   * Due to database changes, this report includes activity that occurred after October 2013 only. 
 
-  * For Checkboxes, Dropdown, and Multiple Choice problems added after October 2013, but with no activity after early March 2014, the **AnswerValue** displays a generic label (such as choice_1, choice_2) rather than the actual text label. 
+  * For checkboxes, dropdown, and multiple choice problems added after October 2013, but with no activity after early March 2014, the **AnswerValue** displays a generic label (such as choice_1, choice_2) rather than the actual text label. 
 
 .. _Download_Answer_Distributions:
 
