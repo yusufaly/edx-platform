@@ -46,7 +46,7 @@ When you create a peer assessment problem, you'll specify several elements. For 
   .. image:: /Images/PA_AssmtTypes-LMS.png
      :alt: Image of peer assessment with assessment types circled
 
-- (optional) The **due dates** for students to submit responses, perform peer assessments, and perform self assessments. You can set different dates for each action, and these dates can overlap. If you don't specify dates, the deadline for all responses, peer assessments, and self assessments is the due date that you set in the subsection that contains the peer assessment.
+- (optional) The **due dates** for students to submit responses, perform peer assessments, and perform self assessments. You can set different dates for each action, and these dates can overlap. If you don't specify dates, the deadline for all responses, peer assessments, and self assessments is the due date that you set in the subsection that contains the peer assessment. (**SP: We tell people that this is optional, but then include a warning about setting close due dates for response submissions and assessments. Does that mean this _shouldn't_ be optional?**)
 
   .. note:: We don't recommend that you use the same due date and time for response submissions and assessments. If a student submits a response immediately before the due date, other students will have very little time to assess the response before peer assessment closes. In this case, a student's response may not receive a score.
 
