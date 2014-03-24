@@ -327,7 +327,7 @@ To display the distribution of scores for a problem:
 
    A histogram of scores for that problem displays.
 
-   .. image:: Images/answer_histogram.png
+   .. image:: Images/score_histogram.png
      :alt: Graph of the numbers of students who got different grades for a selected problem
 
 ..  **Question**: (sent to Olga 31 Jan 14) this is a tough UI to use: how do they correlate the codes in this drop-down with actual constructed problems? the copy-and-paste UI on the Student Admin page actually works a little better imo.
