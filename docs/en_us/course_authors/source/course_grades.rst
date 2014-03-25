@@ -115,7 +115,7 @@ To view current grades for a student:
 The Course Progress page for the student displays a chart with the grade for each homework, lab, midterm, final, and any other assignment types in your course, and the total grade earned for the course to date. 
 
    .. image:: Images/Student_Progress.png
-     :alt: A bar chart from a student's Progress page showing grade acheived for each assignment
+     :alt: A bar chart from a student's Progress page showing grade achieved for each assignment
 
 =========================================================
 Check a Student's Submission and Submission History
@@ -258,7 +258,7 @@ For certain problems in your course, you can download a CSV file with data about
 * Text input (``<stringresponse>``)
 * Math expression input (``<formularesponse>``)
 
-The file includes a row for each problem-answer combination selected by your students. For example, for a problem that has a total of five possible answers the file includes up to five rows, one for each answer selected by at least one student. For problems that use rerandomization (the **Randomization** setting in Studio), there is one row for each possible problem-variant-answer combination.
+The file includes a row for each problem-answer combination selected by your students. For example, for a problem that has a total of five possible answers the file includes up to five rows, one for each answer selected by at least one student. For problems that use rerandomization (the **Randomization** setting in Studio), there is one row for each problem-variant-answer combination selected by your students.
 
 The CSV file contains the following columns:
 
@@ -275,7 +275,7 @@ The CSV file contains the following columns:
    * - Correct Answer
      - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
    * - Count
-     - The number of times that all students entered or selected this answer for the problem or problem variant. Each student contributes a maximum of 1 to this count, even if a student uses multiple attempts to provide the same answer.
+     - The number of times that students entered or selected this answer as their most recent submission for the problem or problem variant. Each student contributes a maximum of 1 to this count, even if a student uses multiple attempts to provide the same answer.
    * - ValueID
      - The internal identifier of the answer choice for checkboxes, dropdown, and multiple choice problems. Blank for numerical input, text input, and math expression input problems.
    * - AnswerValue
@@ -295,9 +295,11 @@ Entries are sorted by the value in each column, starting with the ModuleID on th
 
   * If you change a problem after it is released, the problem **Count** values reflect the entire problem history. It may not be possible for you to determine which answers were given before and after you made the change.
 
-  * Due to database changes, this report includes activity that occurred after October 2013 only. 
+  * Due to database changes, this report includes only activity that occurred after October 2013. 
 
-  * For checkboxes, dropdown, and multiple choice problems added after October 2013, but with no activity after early March 2014, the **AnswerValue** displays a generic label (such as choice_1, choice_2) rather than the actual text label. 
+  * For checkboxes, dropdown, and multiple choice problems added after October 2013, but with no activity after early March 2014, the **AnswerValue** is blank; however, the **ValueID** does display internal identifiers such as choice_1 and choice_2. 
+
+  * For problems that use the **Randomization** setting in Studio added after October 2013, but with no activity after early March 2014, the **Question** is blank.
 
 .. _Download_Answer_Distributions:
 
