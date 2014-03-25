@@ -472,10 +472,6 @@ CODE_JAIL = {
 #   ]
 COURSES_WITH_UNSAFE_CODE = []
 
-############################ SIGNAL HANDLERS ################################
-# This is imported to register the exception signal handling that logs exceptions
-import monitoring.exceptions  # noqa
-
 ############################### DJANGO BUILT-INS ###############################
 # Change DEBUG/TEMPLATE_DEBUG in your environment settings files, not here
 DEBUG = False
@@ -1192,6 +1188,9 @@ INSTALLED_APPS = (
     'reverification',
 
     'embargo',
+
+    # Monitoring functionality
+    'monitoring',
 )
 
 ######################### MARKETING SITE ###############################
