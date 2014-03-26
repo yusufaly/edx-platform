@@ -156,8 +156,9 @@ class EmailChangeRequestTests(TestCase):
         self.assertEquals(expected_error, response_data['error'])
         self.assertFalse(self.user.email_user.called)
 
-    def test_unauthenticated(self):
-        self.user.is_authenticated = False
+    @patch("django.contrib.auth.models.User.is_authenticated")
+    def test_unauthenticated(self, is_authenticated):
+        is_authenticated.return_value = False
         with self.assertRaises(Http404):
             change_email_request(self.request)
         self.assertFalse(self.user.email_user.called)

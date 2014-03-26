@@ -72,13 +72,14 @@ class CreatorGroupTest(TestCase):
             remove_users(self.admin, CourseCreatorRole(), self.user)
             self.assertTrue(has_access(self.user, CourseCreatorRole()))
 
-    def test_add_user_not_authenticated(self):
+    @mock.patch("django.contrib.auth.models.User.is_authenticated")
+    def test_add_user_not_authenticated(self, is_authenticated):
         """
         Tests that adding to creator group fails if user is not authenticated
         """
         with mock.patch.dict('django.conf.settings.FEATURES',
                              {'DISABLE_COURSE_CREATION': False, "ENABLE_CREATOR_GROUP": True}):
-            self.user.is_authenticated = False
+            is_authenticated.return_value = False
             add_users(self.admin, CourseCreatorRole(), self.user)
             self.assertFalse(has_access(self.user, CourseCreatorRole()))
 
