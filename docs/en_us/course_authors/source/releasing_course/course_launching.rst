@@ -4,7 +4,7 @@
 Course Launching Activities 
 ##############################
 
-As the start date for your course approaches, you may want to accomplish certain tasks 
+As the start date for your course approaches, you need to verify that your course is ready and that you are prepared to help your students get started. A checklist of the activities that you want to complete, including some or all of these suggestions, can help. 
 
 * Verify the course start date and time in Studio. See :ref:`Set Important
   Dates for Your Course`.
