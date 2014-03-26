@@ -6,9 +6,7 @@ Peer Assessment Problems
 Introduction to Peer Assessments
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. warning:: **Peer assessment technology is still in beta.** We recommend that
-          you test peer assessments thoroughly in a practice course and only add them to
-          courses that are **not** already running.
+.. note:: **Peer assessment technology is in limited release.** We recommend that you test peer assessments thoroughly in a practice course and only add them to courses that haven't yet started.
 
 Peer assessments allow instructors to assign questions that may not have definite answers, with students grading each others' responses.  Peer assessment problems can also include self assessments. With peer assessments, students learn by comparing their peers' answers to a rubric that you create. With self assessments, students compare their own responses to the rubric.
 
@@ -295,5 +293,5 @@ Step 7. Test the Problem
 
 Test your problem by adding and grading a response.
 
-
+setting it up in a test course and having a group of beta users submit responses and grade each other, reporting back to the instructor on whether they found the question and the rubric easy to understand.
 
