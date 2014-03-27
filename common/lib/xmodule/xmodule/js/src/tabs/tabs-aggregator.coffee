@@ -28,7 +28,7 @@ class @TabsEditingDescriptor
     currentTab.trigger("click", [true, @html_id])
 
   onSwitchEditor: (e, firstTime, html_id) =>
-    e.preventDefault();
+    e.preventDefault()
 
     isInactiveClass = TabsEditingDescriptor.isInactiveClass
     $currentTarget = $(e.currentTarget)
@@ -61,6 +61,8 @@ class @TabsEditingDescriptor
       @$content
         .addClass(isInactiveClass)
         .filter(content_id)
+        .removeClass(isInactiveClass)
+        .find('.wrapper-comp-settings')
         .removeClass(isInactiveClass)
 
   save: ->
