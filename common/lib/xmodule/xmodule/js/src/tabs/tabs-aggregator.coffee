@@ -8,9 +8,11 @@ class @TabsEditingDescriptor
     (Like many CodeMirrors).
     ###
 
-    # hide editor/settings bar (in old-style and new-style modals)
-    @element.closest('.component-editor').find('.component-edit-header').hide()
-    @element.closest('.modal-editor').find('.modal-header').hide()
+    # hide editor/settings bar and update the video's title to match
+    modal = @element.closest('.modal-editor')
+    modal.find('.modal-header').hide()
+    title = modal.find('.modal-window-title').text()
+    modal.find('.component-name').text(title)
 
     @$tabs = $(".tab", @element)
     @$content = $(".component-tab", @element)
