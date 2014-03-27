@@ -81,7 +81,7 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
                     });
 
                     expect(editor.$el.select('.xblock-header')).toBeTruthy();
-                    expect(editor.getMode()).toEqual('settings');
+                    expect(editor.getMode()).toEqual('editor');
                 });
             });
         });

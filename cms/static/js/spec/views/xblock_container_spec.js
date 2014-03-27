@@ -3,16 +3,28 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_container", "
     function ($, create_sinon, URI, XBlockContainerView, XBlockInfo) {
 
         describe("XBlockContainerView", function() {
-            var model, editor, respondWithMockXBlockEditorFragment;
+            var model, containerView, respondWithMockXBlockEditorFragment, mockContainerView,
+                editXBlockModalTemplate, editorModeButtonTemplate, feedbackTemplate;
+
+            mockContainerView = readFixtures('mock/mock-container-view.underscore');
+            editXBlockModalTemplate = readFixtures('edit-xblock-modal.underscore');
+            editorModeButtonTemplate = readFixtures('editor-mode-button.underscore');
+            feedbackTemplate = readFixtures('system-feedback.underscore');
 
             beforeEach(function () {
+                setFixtures(mockContainerView);
+                appendSetFixtures($("<script>", { id: "edit-xblock-modal-tpl", type: "text/template" }).text(editXBlockModalTemplate));
+                appendSetFixtures($("<script>", { id: "editor-mode-button-tpl", type: "text/template" }).text(editorModeButtonTemplate));
+                appendSetFixtures($("<script>", { id: "system-feedback-tpl", type: "text/template" }).text(feedbackTemplate));
+
                 model = new XBlockInfo({
                     id: 'testCourse/branch/published/block/verticalFFF',
                     display_name: 'Test Unit',
                     category: 'vertical'
                 });
-                editor = new XBlockContainerView({
-                    model: model
+                containerView = new XBlockContainerView({
+                    model: model,
+                    el: $('#content')
                 });
             });
 
@@ -22,7 +34,7 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_container", "
             };
 
             describe("Editing an xblock", function() {
-                var mockXBlockEditorHtml;
+                var mockContainerXBlockHtml;
 
                 beforeEach(function () {
                     window.MockXBlock = function(runtime, element) {
@@ -34,18 +46,30 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_container", "
                     window.MockXBlock = null;
                 });
 
-                mockXBlockEditorHtml = readFixtures('mock/mock-xblock-editor.underscore');
+                mockContainerXBlockHtml = readFixtures('mock/mock-container-xblock.underscore');
 
                 it('can render itself', function() {
                     var requests = create_sinon.requests(this);
-                    editor.render();
+                    containerView.render();
                     respondWithMockXBlockEditorFragment(requests, {
-                        html: mockXBlockEditorHtml,
+                        html: mockContainerXBlockHtml,
                         "resources": []
                     });
 
-                    expect(editor.$el.select('.xblock-header')).toBeTruthy();
-                    expect(editor.getMode()).toEqual('editor');
+                    expect(containerView.$el.select('.xblock-header')).toBeTruthy();
+                });
+
+
+                it('can show an edit modal for a child xblock', function() {
+                    var requests = create_sinon.requests(this),
+                        editButtons;
+                    containerView.render();
+                    respondWithMockXBlockEditorFragment(requests, {
+                        html: mockContainerXBlockHtml,
+                        "resources": []
+                    });
+                    editButtons = containerView.$('.edit-button');
+                    expect(editButtons.length).toBe(3);
                 });
             });
         });
