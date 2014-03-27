@@ -1,9 +1,9 @@
-define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/models/xblock_info",
-        "xmodule", "coffee/src/main", "xblock/cms.runtime.v1"],
-    function ($, create_sinon, URI, XBlockEditorView, XBlockInfo) {
+define([ "jquery", "js/spec_helpers/create_sinon", "js/spec_helpers/edit_helpers",
+        "js/views/xblock_editor", "js/models/xblock_info"],
+    function ($, create_sinon, edit_helpers, XBlockEditorView, XBlockInfo) {
 
         describe("XBlockEditorView", function() {
-            var model, editor, respondWithMockXBlockEditorFragment;
+            var model, editor;
 
             beforeEach(function () {
                 model = new XBlockInfo({
@@ -15,11 +15,6 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
                     model: model
                 });
             });
-
-            respondWithMockXBlockEditorFragment = function(requests, response) {
-                var requestIndex = requests.length - 1;
-                create_sinon.respondWithJson(requests, response, requestIndex);
-            };
 
             describe("Editing an xblock", function() {
                 var mockXBlockEditorHtml;
@@ -39,7 +34,7 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
                 it('can render itself', function() {
                     var requests = create_sinon.requests(this);
                     editor.render();
-                    respondWithMockXBlockEditorFragment(requests, {
+                    create_sinon.respondWithJson(requests, {
                         html: mockXBlockEditorHtml,
                         "resources": []
                     });
@@ -50,19 +45,12 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
             });
 
             describe("Editing an xmodule", function() {
-                var mockXModuleEditorHtml, editorTemplate, stringEntryTemplate, numberEntryTemplate, feedbackTemplate;
+                var mockXModuleEditorHtml;
 
                 mockXModuleEditorHtml = readFixtures('mock/mock-xmodule-editor.underscore');
-                editorTemplate = readFixtures('metadata-editor.underscore');
-                numberEntryTemplate = readFixtures('metadata-number-entry.underscore');
-                stringEntryTemplate = readFixtures('metadata-string-entry.underscore');
-                feedbackTemplate = readFixtures('system-feedback.underscore');
 
                 beforeEach(function() {
-                    setFixtures($("<script>", {id: "metadata-editor-tpl", type: "text/template"}).text(editorTemplate));
-                    appendSetFixtures($("<script>", {id: "metadata-number-entry", type: "text/template"}).text(numberEntryTemplate));
-                    appendSetFixtures($("<script>", {id: "metadata-string-entry", type: "text/template"}).text(stringEntryTemplate));
-                    appendSetFixtures($("<script>", { id: "system-feedback-tpl", type: "text/template" }).text(feedbackTemplate));
+                    edit_helpers.installEditTemplates();
 
                     // Mock the VerticalDescriptor so that the module can be rendered
                     window.VerticalDescriptor = XModule.Descriptor;
@@ -75,7 +63,7 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_editor", "js/
                 it('can render itself', function() {
                     var requests = create_sinon.requests(this);
                     editor.render();
-                    respondWithMockXBlockEditorFragment(requests, {
+                    create_sinon.respondWithJson(requests, {
                         html: mockXModuleEditorHtml,
                         "resources": []
                     });

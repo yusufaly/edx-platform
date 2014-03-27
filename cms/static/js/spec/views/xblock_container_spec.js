@@ -1,21 +1,15 @@
-define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_container", "js/models/xblock_info",
-    "xmodule", "coffee/src/main", "xblock/cms.runtime.v1"],
-    function ($, create_sinon, URI, XBlockContainerView, XBlockInfo) {
+define(["jquery", "js/spec_helpers/create_sinon", "js/spec_helpers/edit_helpers",
+    "js/views/xblock_container", "js/models/xblock_info"],
+    function ($, create_sinon, edit_helpers, XBlockContainerView, XBlockInfo) {
 
         describe("XBlockContainerView", function() {
-            var model, containerView, respondWithMockXBlockEditorFragment, mockContainerView,
-                editXBlockModalTemplate, editorModeButtonTemplate, feedbackTemplate;
+            var model, containerView, respondWithMockXBlockEditorFragment, mockContainerView;
 
             mockContainerView = readFixtures('mock/mock-container-view.underscore');
-            editXBlockModalTemplate = readFixtures('edit-xblock-modal.underscore');
-            editorModeButtonTemplate = readFixtures('editor-mode-button.underscore');
-            feedbackTemplate = readFixtures('system-feedback.underscore');
 
             beforeEach(function () {
-                setFixtures(mockContainerView);
-                appendSetFixtures($("<script>", { id: "edit-xblock-modal-tpl", type: "text/template" }).text(editXBlockModalTemplate));
-                appendSetFixtures($("<script>", { id: "editor-mode-button-tpl", type: "text/template" }).text(editorModeButtonTemplate));
-                appendSetFixtures($("<script>", { id: "system-feedback-tpl", type: "text/template" }).text(feedbackTemplate));
+                edit_helpers.installEditTemplates();
+                appendSetFixtures(mockContainerView);
 
                 model = new XBlockInfo({
                     id: 'testCourse/branch/published/block/verticalFFF',
@@ -34,7 +28,9 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_container", "
             };
 
             describe("Editing an xblock", function() {
-                var mockContainerXBlockHtml;
+                var mockContainerXBlockHtml,
+                    mockXBlockEditorHtml;
+
 
                 beforeEach(function () {
                     window.MockXBlock = function(runtime, element) {
@@ -47,6 +43,7 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_container", "
                 });
 
                 mockContainerXBlockHtml = readFixtures('mock/mock-container-xblock.underscore');
+                mockXBlockEditorHtml = readFixtures('mock/mock-xblock-editor.underscore');
 
                 it('can render itself', function() {
                     var requests = create_sinon.requests(this);
@@ -69,7 +66,14 @@ define([ "jquery", "js/spec/create_sinon", "URI", "js/views/xblock_container", "
                         "resources": []
                     });
                     editButtons = containerView.$('.edit-button');
-                    expect(editButtons.length).toBe(3);
+                    expect(editButtons.length).toBe(4);
+                    editButtons.first().click();
+                    create_sinon.respondWithJson(requests, {
+                        html: mockXBlockEditorHtml,
+                        "resources": []
+                    });
+                    expect($('.wrapper-modal-window')).toHaveClass('is-shown');
+                    edit_helpers.cancelModal();
                 });
             });
         });
