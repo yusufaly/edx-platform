@@ -4,18 +4,39 @@
 Course Launching Activities 
 ##############################
 
-As the start date for your course approaches, you need to verify that your course is ready and that you are prepared to help your students get started. A checklist of the activities that you want to complete, including some or all of these suggestions, can help. 
+As the start date for your course approaches, a checklist can help you make sure that your course, and your students, are ready. Suggestions for activities to complete before your course starts follow. 
+
+
+Verify Course Settings
 
 * Verify the course start date and time in Studio. See :ref:`Set Important
   Dates for Your Course`.
+* Verify the grading policy  
+* Set a grace period
+
+Welcome Students
+
 * Compose a welcome message and add it to the Course Info page. See :ref:`Add
   a Course Update`.
-* Define and share an email address for the course staff and instructors to
-  use for communicating operational issues.
+* Verify that a syllabus and other references are available on the Course Handouts Page.
 * Prepare and send a welcome email message to currently enrolled students one
   week or more before the course start date. See :ref:`Send_Bulk_Email`.
-.. * Open forum before course launch (optional)
+* Start an "Introduce Yourself" thread in a discussion. For MOOCs, start multiple threads to distribute student responses. For example, "Introduce Yourself: Europe", "Introduce Yourself: North America", etc.
 * Prepare and send a launch email message to currently enrolled students on the course start date. 
+
+Review Content for the First Week
+
+* Verify that all units are present and published
+* Check the due dates for all assignments
+* Verify that videos, transcripts, and download links are in place.
+
+
+Prepare Staff
+
+* Review 
+* Verify that all team  members know how to record their work, report issues, and collaborate on tasks.
+* Define communication methods for the course staff and instructors, such as a course-specific email address.
+
 
 *************************
 Bulk Email 
@@ -63,7 +84,7 @@ To send an email message to course participants:
 
 5. Enter a **Subject** for the message. A subject is required.
 
-#. Enter the message body. Messages can use HTML styling, including text formatting, images, and links. 
+#. Enter the message body. Messages can use HTML styling, including text formatting and links. The same options are available for your email messages as for the HTML Component that you can add to your course in Studio. See :ref:`Working with HTML Components`. 
 
 * With the **Visual** tab selected, you can click the controls above the message body to select different styling options or add an image or a link. 
 * With the **HTML** tab selected, you can   
