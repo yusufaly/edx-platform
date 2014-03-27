@@ -10,8 +10,8 @@ Change Log
 
    * - Date
      - Change
-   * - 3/25/14 
-     - Expanded the :ref:`Grades` chapter to include a :ref:`Review_Answers` section.
+   * - 3/31/14 
+     - Expanded the :ref:`Grades` chapter to include the new :ref:`Review_Answers` section.
    * - 02/24/14
      - Created new chapter, :ref:`Getting Started with edX`.
    * -

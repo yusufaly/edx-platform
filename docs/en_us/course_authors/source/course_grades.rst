@@ -275,13 +275,13 @@ The CSV file contains the following columns:
    * - Correct Answer
      - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
    * - Count
-     - The number of times that students entered or selected this answer as their most recent submission for the problem or problem variant. Each student contributes a maximum of 1 to this count, even if a student uses multiple attempts to provide the same answer.
+     - The number of times that students entered or selected this answer as their most recent submission for the problem or problem variant. For problems with the number of **Attempts** set to a value greater than 1, this means that each student contributes a maximum of 1 to this count, even if the same answer is provided in multiple attempts.
    * - ValueID
-     - The internal identifier of the answer choice for checkboxes, dropdown, and multiple choice problems. Blank for numerical input, text input, and math expression input problems.
+     - The internal identifier of the answer choice for checkboxes and multiple choice problems. Blank for dropdown, numerical input, text input, and math expression input problems.
    * - AnswerValue
      - The text label of the answer choice for checkboxes, dropdown, and multiple choice problems. The value entered by the student for numerical input, text input, and math expression input problems. 
    * - Variant
-     - For problems that use the **Randomization** setting in Studio, contains the unique identifier for a variant of the problem. Blank for problems that do not use the **Randomization** setting.
+     - For problems that use the **Randomization** setting in Studio, contains the unique identifier for a variant of the problem. Blank for problems that do not use the **Randomization** setting, or that use the **Never** option for this setting.
    * - Problem Display Name
      - The **Display Name** defined for the problem.
    * - Question
@@ -289,17 +289,17 @@ The CSV file contains the following columns:
 
 Entries are sorted by the value in each column, starting with the ModuleID on the left and continuing through the columns to the right.
 
-**Notes**: 
+Please note the following about the student answer distribution report:   
 
-  * Spreadsheet applications such as Microsoft Excel can alter the data in the CSV report for display purposes. For example, for different student answers of "0000" and "0", Excel correctly includes two different lines, but displays the **AnswerValue** on both of them as "0". If you notice answers that appear to be the same on separate lines with separate counts, review the raw data by opening the CSV file in a text editor.
+  * This report includes only problems that at least one student answered since early March 2014. For those problems, this report only includes activity that occurred after October 2013. 
 
-  * If you change a problem after it is released, the problem **Count** values reflect the entire problem history. It may not be possible for you to determine which answers were given before and after you made the change.
+  * For checkboxes and multiple choice problems, the answer choices actually selected by a student after early March 2014 display as described above. Answer choices selected by at least one student after October 2013, but not selected since early March 2014, are included on the report but do not include an **AnswerValue**. The **ValueID** does display internal identifiers, such as choice_1 and choice_2, for those answers. 
 
-  * Due to database changes, this report includes only activity that occurred after October 2013. 
+  * For problems that use the **Randomization** setting in Studio, if a particular answer has not been selected since early March 2014, the **Question** is blank for that answer.
 
-  * For checkboxes, dropdown, and multiple choice problems added after October 2013, but with no activity after early March 2014, the **AnswerValue** is blank; however, the **ValueID** does display internal identifiers such as choice_1 and choice_2. 
+  * Problem **Count** values reflect the entire problem history. If you change a problem after it is released, it may not be possible for you to determine which answers were given before and after you made the change.
 
-  * For problems that use the **Randomization** setting in Studio added after October 2013, but with no activity after early March 2014, the **Question** is blank.
+  * Spreadsheet applications such as Microsoft Excel can alter the data in the CSV report for display purposes. For example, for different student answers of "0.5" and ".5" Excel correctly includes two different lines, but displays the **AnswerValue** on both of them as "0.5". If you notice answers that appear to be the same on separate lines with separate counts, you can review the actual, unaltered data by opening the CSV file in a text editor.
 
 .. _Download_Answer_Distributions:
 
