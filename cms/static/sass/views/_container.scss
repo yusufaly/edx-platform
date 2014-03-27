@@ -60,10 +60,35 @@ body.view-container {
       margin-bottom: $baseline;
       border-top: 5px solid $blue;
       background-color: $white;
-      padding: ($baseline*.75) ($baseline*.75) ($baseline) ($baseline*.75);
+
+      .pub-status {
+        @extend %t-title6;
+        display: block;
+        background-color: $blue-l2;
+        padding: ($baseline/2) ($baseline*.75);
+        font-weight: 600;
+      }
+
+      &.published {
+        border-top: 5px solid $blue;
+
+        .pub-status {
+          background-color: $blue-t0;
+        }
+
+      }
+
+      &.draft {
+        border-top: 5px solid $gray-l1;
+
+        .pub-status {
+          background-color: $gray-l4;
+        }
+      }
 
       .copy {
         @extend %t-copy-sub1;
+        padding: ($baseline*.75) ($baseline*.75) ($baseline) ($baseline*.75);
       }
     }
   }
