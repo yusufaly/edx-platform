@@ -5,6 +5,7 @@ import argparse
 from paver.easy import *
 from .utils.envs import Env
 from .utils.cmd import cmd, django_cmd
+from .utils.thread import run_threaded
 
 
 COFFEE_DIRS = ['lms', 'cms', 'common']
@@ -80,7 +81,6 @@ def collect_assets(systems, settings):
     for sys in systems:
         sh(django_cmd(sys, settings, "collectstatic --noinput > /dev/null"))
 
-
 @task
 @needs('pavelib.prereqs.install_prereqs')
 @consume_args
@@ -106,11 +106,12 @@ def update_assets(args):
         help="Skip collection of static assets",
     )
     args = parser.parse_args(args)
-
-    compile_templated_sass(args.system, args.settings)
-    process_xmodule_assets()
-    compile_coffeescript()
-    compile_sass(args.debug)
+    run_threaded([
+        (compile_templated_sass, (args.system, args.settings)),
+        process_xmodule_assets,
+        compile_coffeescript,
+        (compile_sass, (args.debug,)),
+    ])
 
     if args.collect:
         collect_assets(args.system, args.settings)
