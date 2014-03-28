@@ -361,8 +361,7 @@ function (HTML5Video, Resizer) {
     }
 
     function onSpeedChange(newSpeed) {
-        var time = this.videoPlayer.currentTime,
-            oldSpeed = this.speed;
+        var time = this.videoPlayer.currentTime;
 
         if (this.isFlashMode()) {
             this.videoPlayer.currentTime = Time.convert(
@@ -378,14 +377,14 @@ function (HTML5Video, Resizer) {
             'speed_change_video',
             {
                 current_time: time,
-                old_speed: oldSpeed,
+                old_speed: this.speed,
                 new_speed: newSpeed
             }
         );
 
         this.setSpeed(newSpeed, true);
         this.videoPlayer.setPlaybackRate(newSpeed);
-        this.el.trigger('speedchange', [oldSpeed, newSpeed]);
+        this.el.trigger('speedchange', arguments);
 
         this.saveState(true, { speed: newSpeed });
     }

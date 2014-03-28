@@ -3,8 +3,8 @@
 // VideoCaption module.
 define(
 'video/09_video_caption.js',
-['video/00_sjson.js'],
-function (Sjson) {
+['video/00_sjson.js', 'video/00_process.js'],
+function (Sjson, Process) {
 
     /**
      * @desc VideoCaption module exports a function.
@@ -23,7 +23,9 @@ function (Sjson) {
     return function (state) {
         var dfd = $.Deferred();
 
-        state.videoCaption = {};
+        state.videoCaption = {
+            speedCoef: 1
+        };
         _makeFunctionsPublic(state);
         state.videoCaption.renderElements();
 
@@ -153,18 +155,8 @@ function (Sjson) {
         }
 
         this.el.on('speedchange', function (event, newSpeed) {
-            if (self.isFlashMode() && this.sjson) {
-                self.sjson.setSpeed(newSpeed)
-                    .done(function () {
-                        var start = self.sjson.getStartTimes(),
-                            text = self.sjson.getCaptions();
-
-                        Caption.reRenderCaption(start, text);
-                        Caption.updatePlayTime(self.videoPlayer.currentTime);
-                    })
-                    .fail(function () {
-                        console.log('Cannot convert captions.');
-                    });
+            if (self.isFlashMode()) {
+                Caption.speedCoef = Math.round(1/newSpeed);
             }
         });
 
@@ -258,15 +250,15 @@ function (Sjson) {
             url: self.config.transcriptTranslationUrl,
             notifyOnError: false,
             data: data,
-            success: function (captions) {
-                Caption.sjson = Sjson(captions);
+            success: function (sjson) {
+                Caption.sjson = Sjson(sjson);
 
                 var start = Caption.sjson.getStartTimes(),
-                    text = Caption.sjson.getCaptions();
+                    captions = Caption.sjson.getCaptions();
 
                 if (Caption.loaded) {
                     if (Caption.rendered) {
-                        Caption.reRenderCaption(start, text);
+                        Caption.reRenderCaption(start, captions);
                         Caption.updatePlayTime(self.videoPlayer.currentTime);
                     }
                 } else {
@@ -278,7 +270,7 @@ function (Sjson) {
                             )
                         );
                     } else {
-                        Caption.renderCaption(start, text);
+                        Caption.renderCaption(start, captions);
                     }
 
                     Caption.bindHandlers();
@@ -390,32 +382,29 @@ function (Sjson) {
     }
 
     function buildCaptions (container, start, captions) {
-        var fragment = document.createDocumentFragment();
+        var fragment = document.createDocumentFragment(),
+            process = function(text, index) {
+                var liEl = $('<li>', {
+                    'data-index': index,
+                    'data-start': start[index],
+                    'tabindex': 0
+                }).html(text);
 
-        $.each(captions, function(index, text) {
-            var liEl = $('<li>');
+                return liEl[0];
+            };
 
-            liEl.html(text);
-
-            liEl.attr({
-                'data-index': index,
-                'data-start': start[index],
-                'tabindex': 0
-            });
-
-            fragment.appendChild(liEl[0]);
+        return Process.array(captions, process).done(function (list) {
+            container.append(list);
         });
-
-        container.append([fragment]);
     }
 
-    function renderCaption(start, text) {
+    function renderCaption(start, captions) {
         var Caption = this.videoCaption,
             events = ['mouseover', 'mouseout', 'mousedown', 'click', 'focus',
                 'blur', 'keydown'].join(' ');
 
         Caption.setSubtitlesHeight();
-        buildCaptions(Caption.subtitlesEl, start, text);
+        buildCaptions(Caption.subtitlesEl, start, captions).done(Caption.addPaddings);
 
         Caption.subtitlesEl.on(events, 'li[data-index]', function (event) {
             switch (event.type) {
@@ -459,18 +448,16 @@ function (Sjson) {
         // has to be known to decide if, when a caption gets the focus, an
         // outline has to be drawn (tabbing) or not (mouse click).
         Caption.isMouseFocus = false;
-        Caption.addPaddings();
         Caption.rendered = true;
     }
 
-    function reRenderCaption(start, text) {
+    function reRenderCaption(start, captions) {
         var Caption = this.videoCaption;
 
         Caption.currentIndex = null;
         Caption.rendered = false;
         Caption.subtitlesEl.empty();
-        buildCaptions(Caption.subtitlesEl, start, text);
-        Caption.addPaddings();
+        buildCaptions(Caption.subtitlesEl, start, captions).done(Caption.addPaddings);
         Caption.rendered = true;
     }
 
@@ -537,7 +524,7 @@ function (Sjson) {
             // off again as it may have been enabled in captionBlur.
             if (
                 captionIndex <= 1 ||
-                captionIndex >= this.videoCaption.captions.length - 2
+                captionIndex >= this.videoCaption.sjson.getSize() - 2
             ) {
                 this.videoCaption.autoScrolling = false;
             }
@@ -555,7 +542,7 @@ function (Sjson) {
         // tabbing back out of the captions or on the last element and tabbing
         // forward out of the captions.
         if (captionIndex === 0 ||
-            captionIndex === this.videoCaption.captions.length - 1) {
+            captionIndex === this.videoCaption.sjson.getSize() - 1) {
 
             this.videoCaption.autoScrolling = true;
         }
@@ -621,9 +608,9 @@ function (Sjson) {
         if (this.videoCaption.loaded) {
             if (!this.videoCaption.rendered) {
                 var start = this.videoCaption.sjson.getStartTimes(),
-                    text = this.videoCaption.sjson.getCaptions();
+                    captions = this.videoCaption.sjson.getCaptions();
 
-                this.videoCaption.renderCaption(start, text);
+                this.videoCaption.renderCaption(start, captions);
             }
 
             this.videoCaption.playing = true;
@@ -637,7 +624,8 @@ function (Sjson) {
     }
 
     function updatePlayTime(time) {
-        var newIndex;
+        var newIndex,
+            speedCoef = this.videoCaption.speedCoef;
 
         if (this.videoCaption.loaded) {
             // Current mode === 'flash' can only be for YouTube videos. So, we
@@ -653,7 +641,7 @@ function (Sjson) {
                 time = Math.round(time * 1000 + 100);
             }
 
-            newIndex = this.videoCaption.search(time);
+            newIndex = this.videoCaption.search(time * speedCoef);
 
             if (
                 typeof newIndex !== 'undefined' &&

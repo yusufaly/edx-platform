@@ -15,19 +15,19 @@ function() {
  */
     var Process = {
         array: function (list, process) {
+            if (!_.isArray(list)) {
+                return $.Deferred().reject().promise();
+            }
+
+            if (!_.isFunction(process) || !list.length) {
+                return $.Deferred().resolve(list).promise();
+            }
+
             var MAX_DELAY = 50, // maximum amount of time that js code should be allowed to run continuously
                 dfd = $.Deferred(),
                 result = [],
                 index = 0,
-                len;
-
-            if (!_.isArray(list)) {
-                return dfd.reject().promise();
-            } else if (!_.isFunction(process) || !list.length) {
-                return dfd.resolve(list).promise();
-            } else {
                 len = list.length;
-            }
 
             var getCurrentTime = function () {
                 return (new Date()).getTime();
@@ -37,7 +37,7 @@ function() {
                 var start = getCurrentTime();
 
                 do {
-                    result[index] = process(list[index]);
+                    result[index] = process(list[index], index);
                     index++;
                 } while (index < len && getCurrentTime() - start < MAX_DELAY);
 
