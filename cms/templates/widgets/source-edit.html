@@ -3,7 +3,7 @@
   hlskey = hashlib.md5(module.location.url()).hexdigest()
 %>
 
-  <section id="hls-modal-${hlskey}" class="upload-modal modal" style="margin: 0; left: 0; overflow:scroll; background:#ddd; padding: 10px 0;box-shadow: 0 0 5px 0 #555;" >
+  <section id="hls-modal-${hlskey}" class="upload-modal modal" style="overflow:scroll; background:#ddd; padding: 10px 0;box-shadow: 0 0 5px 0 #555;" >
   <a href="#" class="close-button" style="background: #eee; float: right;padding: 5px 10px; margin: 0 10px 0 0; border: 0;"><span class="close-icon"></span></a>
   <div id="hls-div">
     <header>
@@ -49,7 +49,7 @@ require(["jquery", "jquery.leanModal", "codemirror/stex"], function($) {
  //     hlsmodal.attr('style', function(i,s) { return s + ' margin-left:0px !important; left:5%' });
       var editorH = $( window ).height() - 100;
       var editorW = $( window ).innerWidth() - 70;
-      hlsmodal.attr('style', function(i,s) { return s + 'margin-left:0px !important; left:0; height:' + editorH + 'px;'});
+      hlsmodal.attr('style', function(i,s) { return s + 'margin: 2% 0 0 10% !important; left:0; height:' + editorH + 'px;'});
 
       ## setup file input
       ## need to insert this only after hls triggered, because otherwise it
