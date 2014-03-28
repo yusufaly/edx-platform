@@ -5,41 +5,59 @@ require(
 function (Sjson) {
     describe('Sjson', function () {
         var data = {
-            start: [270, 2720, 5430],
-            end: [2720, 5430, 7160],
-            text: [
-                "Hi, welcome to Edx.",
-                "As you know, our courses are entirely online.",
-                "So before we start learning about the subjects that"
-            ]
-        };
+                start: [1, 2, 3],
+                text: ['1', '2', '3']
+            },
+            list = [270, 2720, 5430];
 
-        it ('Array is processed successfully', function () {
-            var convertedData;
+        it ('Array is converted successfully', function () {
+            var sjson = Sjson(data),
+                newSpeed = 1.5,
+                convertedList;
 
             runs(function () {
-                var oldSpeed = 1,
-                    newSpeed = 2;
-
-                Sjson.convert(data, oldSpeed, newSpeed).done(function (result) {
-                    convertedData = result;
+                sjson.convert(newSpeed).done(function (result) {
+                    convertedList = result;
                 });
             });
 
             waitsFor(function () {
-                return convertedData;
+                return convertedList;
             }, 'Array processing takes too much time', WAIT_TIMEOUT);
 
             runs(function () {
-                expect(convertedData).toEqual({
-                    start: [540, 5440, 10860],
-                    end: [5440, 10860, 14320],
-                    text: [
-                        "Hi, welcome to Edx.",
-                        "As you know, our courses are entirely online.",
-                        "So before we start learning about the subjects that"
-                    ]
+                expect(convertedList).toEqual([1.5, 3, 4.5]);
+            });
+        });
+
+        it ('returns captions', function () {
+            var sjson = Sjson(data);
+            expect(sjson.getCaptions()).toEqual(data.text);
+        });
+
+        it ('returns start times', function () {
+            var sjson = Sjson(data);
+            expect(sjson.getStartTimes()).toEqual(data.start);
+        });
+
+        it ('sets default speed', function () {
+            var sjson = Sjson(data),
+                newSpeed = 1.5,
+                convertedList;
+
+            runs(function () {
+                sjson.setSpeed(newSpeed).done(function (result) {
+                    convertedList = result;
                 });
+            });
+
+            waitsFor(function () {
+                return convertedList;
+            }, 'Array processing takes too much time', WAIT_TIMEOUT);
+
+            runs(function () {
+                expect(convertedList).toEqual([1.5, 3, 4.5]);
+                expect(sjson.getStartTimes()).toEqual([1.5, 3, 4.5]);
             });
         });
     });

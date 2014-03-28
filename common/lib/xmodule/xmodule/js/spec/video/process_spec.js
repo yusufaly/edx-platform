@@ -15,7 +15,6 @@ function (Process) {
         },
         items = getArrayNthLength(1000);
 
-
     describe('Process', function () {
         it ('Array is processed successfully', function () {
             var processedArray,

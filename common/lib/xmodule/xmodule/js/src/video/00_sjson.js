@@ -5,95 +5,69 @@ define(
 ['video/00_process.js'],
 function(Process) {
 "use strict";
-/**
- * Provides convenient way to process big amount of data without UI blocking.
- *
- * @param {array} list Array to process.
- * @param {function} process Calls this function on each item in the list.
- * @return {array} Returns a Promise object to observe when all actions of a
-                   certain type bound to the collection, queued or not, have finished.
- */
 
-    var WorkerAdapter = function (worker) {
-        this._worker = worker;
-    };
-
-    WorkerAdapter.prototype = {
-        convert: function (sjson, oldSpeed, newSpeed) {
-            var dfd = $.Deferred();
-
-            this._worker.postMessage({
-                sjson: sjson,
-                oldSpeed: oldSpeed,
-                newSpeed: newSpeed
-            });
-
-            this._worker.onmessage = dfd.resolve;
-            this._worker.onerror = dfd.reject;
-
-            return dfd.promise();
-        }
-    };
-
-    var ProcessAdapter = function () {};
-
-    ProcessAdapter.prototype = {
-        process: function (oldSpeed, newSpeed) {
+    var ProcessAdapter = (function () {
+        var process = function (oldSpeed, newSpeed) {
             return function (value) {
                 return value * newSpeed / oldSpeed;
             };
-        },
-        convert: function (sjson, oldSpeed, newSpeed) {
-            var dfd = $.Deferred();
-
-            $.when(
-                Process.array(sjson.start, this.process(oldSpeed, newSpeed)),
-                Process.array(sjson.end, this.process(oldSpeed, newSpeed))
-            ).done(function (start, end) {
-                dfd.resolve({
-                    start: start,
-                    end: end,
-                    text: sjson.text
-                });
-            })
-            .fail(dfd.reject);
-
-            return dfd.promise();
-        }
-    };
-
-
-    var Sjson = (function () {
-        var cache = {},
-            worker,
-            hasWorker = (function () {
-                var noWorker = _.isUndefined(window.Worker);
-
-                if(!noWorker) {
-                    try {
-                        worker = new Worker("process_sjson_worker.js");
-                    } catch (ex) {
-                        noWorker = true;
-                    }
-                }
-
-                return noWorker;
-            }());
-
-        var convert = (function () {
-            var converter = hasWorker ?
-                new WorkerAdapter(worker):
-                new ProcessAdapter();
-
-            return function (sjson, oldSpeed, newSpeed) {
-                return converter.convert(sjson, oldSpeed, newSpeed);
-            };
-        }());
+        };
 
         return {
-            convert: convert
+            convert: function (list, oldSpeed, newSpeed) {
+                return Process.array(list, process(oldSpeed, newSpeed));
+            }
         };
     }());
+
+    var Sjson = function (data) {
+        var converter = ProcessAdapter,
+            sjson = {
+                start: data.start.concat(),
+                text: data.text.concat()
+            },
+            etalon_times = sjson.start,
+            cache = {},
+            module = {};
+
+        var getter = function (propertyName) {
+            return function () {
+                return sjson[propertyName];
+            };
+        };
+
+        var convert = function (newSpeed) {
+            var list = etalon_times,
+                speed = Number(newSpeed);
+
+            if (cache[speed]) {
+                return $.Deferred().resolve(cache[speed]).promise();
+            }
+
+            return converter.convert(list, 1, speed).done(function (list) {
+                updateCache(speed, list);
+            });
+        };
+
+        var updateCurrentTimes = function (list) {
+            sjson.start = list;
+        };
+
+        var updateCache = function (speed, list) {
+            cache[speed] = list;
+        };
+
+        updateCache(1, sjson.start);
+
+        return {
+            convert: convert,
+            setSpeed: function (speed) {
+                return convert(speed).done(updateCurrentTimes);
+            },
+            getCaptions: getter('text'),
+            getStartTimes: getter('start'),
+        };
+    };
 
     return Sjson;
 });

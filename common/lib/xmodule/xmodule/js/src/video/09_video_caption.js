@@ -3,8 +3,8 @@
 // VideoCaption module.
 define(
 'video/09_video_caption.js',
-[],
-function () {
+['video/00_sjson.js'],
+function (Sjson) {
 
     /**
      * @desc VideoCaption module exports a function.
@@ -24,9 +24,7 @@ function () {
         var dfd = $.Deferred();
 
         state.videoCaption = {};
-
         _makeFunctionsPublic(state);
-
         state.videoCaption.renderElements();
 
         dfd.resolve();
@@ -154,9 +152,19 @@ function () {
             });
         }
 
-        this.el.on('speedchange', function () {
-            if (self.isFlashMode()) {
-                Caption.fetchCaption();
+        this.el.on('speedchange', function (event, newSpeed) {
+            if (self.isFlashMode() && this.sjson) {
+                self.sjson.setSpeed(newSpeed)
+                    .done(function () {
+                        var start = self.sjson.getStartTimes(),
+                            text = self.sjson.getCaptions();
+
+                        Caption.reRenderCaption(start, text);
+                        Caption.updatePlayTime(self.videoPlayer.currentTime);
+                    })
+                    .fail(function () {
+                        console.log('Cannot convert captions.');
+                    });
             }
         });
 
@@ -241,7 +249,7 @@ function () {
         }
 
         if (this.videoType === 'youtube') {
-            data.videoId = this.youtubeId();
+            data.videoId = this.youtubeId('1.0');
         }
 
         // Fetch the captions file. If no file was specified, or if an error
@@ -251,12 +259,14 @@ function () {
             notifyOnError: false,
             data: data,
             success: function (captions) {
-                Caption.captions = captions.text;
-                Caption.start = captions.start;
+                Caption.sjson = Sjson(captions);
+
+                var start = Caption.sjson.getStartTimes(),
+                    text = Caption.sjson.getCaptions();
 
                 if (Caption.loaded) {
                     if (Caption.rendered) {
-                        Caption.reRenderCaption();
+                        Caption.reRenderCaption(start, text);
                         Caption.updatePlayTime(self.videoPlayer.currentTime);
                     }
                 } else {
@@ -268,7 +278,7 @@ function () {
                             )
                         );
                     } else {
-                        Caption.renderCaption();
+                        Caption.renderCaption(start, text);
                     }
 
                     Caption.bindHandlers();
@@ -379,7 +389,7 @@ function () {
         });
     }
 
-    function buildCaptions (container, captions, start) {
+    function buildCaptions (container, start, captions) {
         var fragment = document.createDocumentFragment();
 
         $.each(captions, function(index, text) {
@@ -399,14 +409,13 @@ function () {
         container.append([fragment]);
     }
 
-    function renderCaption() {
+    function renderCaption(start, text) {
         var Caption = this.videoCaption,
             events = ['mouseover', 'mouseout', 'mousedown', 'click', 'focus',
                 'blur', 'keydown'].join(' ');
 
         Caption.setSubtitlesHeight();
-
-        buildCaptions(Caption.subtitlesEl, Caption.captions, Caption.start);
+        buildCaptions(Caption.subtitlesEl, start, text);
 
         Caption.subtitlesEl.on(events, 'li[data-index]', function (event) {
             switch (event.type) {
@@ -454,13 +463,13 @@ function () {
         Caption.rendered = true;
     }
 
-    function reRenderCaption() {
+    function reRenderCaption(start, text) {
         var Caption = this.videoCaption;
 
         Caption.currentIndex = null;
         Caption.rendered = false;
         Caption.subtitlesEl.empty();
-        buildCaptions(Caption.subtitlesEl, Caption.captions, Caption.start);
+        buildCaptions(Caption.subtitlesEl, start, text);
         Caption.addPaddings();
         Caption.rendered = true;
     }
@@ -579,23 +588,25 @@ function () {
     }
 
     function search(time) {
-        var index, max, min;
+        var Caption = this.videoCaption,
+            min = 0,
+            index, max, start;
 
-        if (this.videoCaption.loaded) {
-            min = 0;
-            max = this.videoCaption.start.length - 1;
+        if (Caption.loaded) {
+            start = Caption.sjson.getStartTimes();
+            max = start.length - 1;
 
-            if (time < this.videoCaption.start[min]) {
+            if (time < start[min]) {
                 return -1;
             }
             while (min < max) {
                 index = Math.ceil((max + min) / 2);
 
-                if (time < this.videoCaption.start[index]) {
+                if (time < start[index]) {
                     max = index - 1;
                 }
 
-                if (time >= this.videoCaption.start[index]) {
+                if (time >= start[index]) {
                     min = index;
                 }
             }
@@ -609,7 +620,10 @@ function () {
     function play() {
         if (this.videoCaption.loaded) {
             if (!this.videoCaption.rendered) {
-                this.videoCaption.renderCaption();
+                var start = this.videoCaption.sjson.getStartTimes(),
+                    text = this.videoCaption.sjson.getCaptions();
+
+                this.videoCaption.renderCaption(start, text);
             }
 
             this.videoCaption.playing = true;

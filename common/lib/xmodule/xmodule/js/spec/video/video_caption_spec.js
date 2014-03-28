@@ -95,7 +95,7 @@
                         expect($.ajaxWithPrefix.mostRecentCall.args[0].data)
                             .toEqual({
                                 language: 'en',
-                                videoId: 'abcdefghijkl'
+                                videoId: 'cogebirgzzM'
                             });
                     });
                 });
@@ -449,14 +449,13 @@
             state = jasmine.initializePlayer();
 
             var Caption = state.videoCaption,
+                text = ['test'],
+                start = [500],
                 li;
-
-            Caption.captions = ['test'];
-            Caption.start = [500];
 
             spyOn(Caption, 'addPaddings');
 
-            Caption.reRenderCaption();
+            Caption.reRenderCaption(start, text);
             li = $('ol.subtitles li');
 
             expect(Caption.addPaddings).toHaveBeenCalled();

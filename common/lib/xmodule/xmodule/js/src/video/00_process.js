@@ -4,7 +4,7 @@ define(
 'video/00_process.js',
 [],
 function() {
-    "use strict";
+"use strict";
 /**
  * Provides convenient way to process big amount of data without UI blocking.
  *
