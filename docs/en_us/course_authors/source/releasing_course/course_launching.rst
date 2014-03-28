@@ -4,69 +4,107 @@
 Course Launching Activities 
 ##############################
 
-As the start date for your course approaches, a checklist can help you make sure that your course, and your students, are ready. Suggestions for activities to complete before your course starts follow. 
+To launch a course, you prepare the course itself, the staff, and the students. This chapter includes a :ref:`Course Launch Checklist` to use as a model for your own schedule of activities. 
+
+To help you communicate to the staff and to all course participants when you are launching the course, and also while the course runs, you can send email messages from the Instructor Dashboard. See :ref:`Bulk Email` and :ref:`Email Task History Report`.
 
 
-Verify Course Settings
+.. _Course Launch Checklist:
+
+****************************
+Course Launch Checklist
+****************************
+
+As the start date for your course approaches, a checklist or timeline of
+activities can help you make sure that your course, and your students, are
+ready to begin. Suggestions for activities to complete before your course
+starts follow.
+
+**Verify Course Settings**
 
 * Verify the course start date and time in Studio. See :ref:`Set Important
   Dates for Your Course`.
-* Verify the grading policy  
-* Set a grace period
+* Verify the grading policy, and set a grace period for homewark assignment
+  due dates. See :ref:`Establish a Grading Policy`.
 
-Welcome Students
 
+**Review First Week Content**
+
+* Verify that all units are present and published. See :ref:`Units`.
+* Check all assignments for completeness and verify their due dates. See :ref:`Working with Problem Components`.
+* Verify that videos, transcripts, and download links are in place.
+* Review feedback from the course team and beta testers to be sure that the
+  content has been thoroughly reviewed and tested.
+
+**Welcome Students**
+
+* Two months before the course start date, prepare and send a welcome email
+  message to currently enrolled students. See :ref:`Send_Bulk_Email`.
 * Compose a welcome message and add it to the Course Info page. See :ref:`Add
   a Course Update`.
-* Verify that a syllabus and other references are available on the Course Handouts Page.
-* Prepare and send a welcome email message to currently enrolled students one
-  week or more before the course start date. See :ref:`Send_Bulk_Email`.
-* Start an "Introduce Yourself" thread in a discussion. For MOOCs, start multiple threads to distribute student responses. For example, "Introduce Yourself: Europe", "Introduce Yourself: North America", etc.
-* Prepare and send a launch email message to currently enrolled students on the course start date. 
+* Verify that a syllabus and other references are available on the Course
+  Handouts Page. See :ref:`Add Course Handouts`.
+* One month before the course start date, prepare and send a welcome email
+  message to currently enrolled students.
+* One week before the course start date, prepare and send a welcome email
+  message to currently enrolled students.
+* Start an "Introduce Yourself" thread in a discussion. For a MOOC, you may
+  want to mange the size of the comment thread by distributing student
+  responses across multiple threads. For example, you can start threads for
+  introductions based on geographical location, such as "Introduce Yourself:
+  Europe", "Introduce Yourself: North America", etc. See
+  :ref:`Running_discussions`.
+* On the course start date, prepare and send a launch email message to
+  currently enrolled students.
 
-Review Content for the First Week
+**Prepare Staff**
 
-* Verify that all units are present and published
-* Check the due dates for all assignments
-* Verify that videos, transcripts, and download links are in place.
+* Define communication methods for all course contributors, including staff,
+  instructors, and the discussion team. For example, set up a course-specific
+  email address.
+* Verify that all course contributors know how to record their work, report
+  issues, and collaborate on tasks.
+* Verify that role assignments are complete for instructors and course staff.
+  See :ref:`Course_Staffing`.
+* Verify that discussion admins, discussion moderators, and community TAs have
+  registered and activated user accounts, enrolled in the course, and been
+  assigned their roles. See :ref:`Assigning_discussion_roles`.
+* Select methods for managing discussions, define guidance for discussion
+  moderators, and distribute to the discussion team. See
+  :ref:`Moderating_discussions` and :ref:`Guidance for Discussion Moderators`.
 
-
-Prepare Staff
-
-* Review 
-* Verify that all team  members know how to record their work, report issues, and collaborate on tasks.
-* Define communication methods for the course staff and instructors, such as a course-specific email address.
-
+.. _Bulk Email:
 
 *************************
 Bulk Email 
 *************************
 
-With the bulk email feature, you can send email messages to course participants directly from the Instructor Dashboard. All team members who have the course staff or instructor role can use this feature to communicate with course participants before, during, and after the course run. 
+With the bulk email feature, you can send email messages to course
+participants directly from the Instructor Dashboard. Messages can use HTML
+styling, including links to videos, a course facebook page, or other material.
+All course contributors who are assigned the course staff or instructor role
+can use this feature to communicate with course participants before, during,
+and after the course run.
 
-When you send an email message from the Instructor Dashboard, you choose the message recipients by selecting one of these predefined groups:
+.. note:: The bulk email feature is currently in limited release, and is enabled for new courses only. A gradual rollout of this feature is planned for 2014.
 
-* Myself, to test out a message before sending it to a larger group.
-* Staff and instructors, to contact other members of the administrative team.
-* All, to communicate with all currently enrolled students and the administrative team.
+===========================
+Message Addressing
+===========================
 
-Before you use the bulk email feature, consider that messages cannot be cancelled after they are sent. Be sure to review each message draft carefully, and send each message to yourself for thorough review and testing, before you send it to all course participants.
+When you send an email message from the Instructor Dashboard, you choose its recipients by selecting one of these predefined groups:
 
---------------------------------
-Message queueing and delivery
---------------------------------
+* **Myself**, to test out a message before sending it to a larger group.
+* **Staff and Instructors**, to contact other members of the administrative team.
+* **All (students, staff and instructors)**, to communicate with all currently enrolled students and the administrative team.
 
-When you send a message, it is queued for processing. Multiple courses use the same email queue, so it can take some time for your message to be delivered to its recipients. If your course is a MOOC, consider limiting the number of messages that you send to all course participants to no more than one per week. 
-
-Email tasks run in the background, so you can 
-
-
+Before you use the bulk email feature, consider that messages cannot be cancelled after they are sent. Before you send a message to all course participants, be sure to review each draft carefully, and send the message to yourself for thorough testing.
 
 .. _Send_Bulk_Email:
 
-*************************************************
+======================================================
 Send Email Messages to Course Participants
-*************************************************
+======================================================
 
 To send an email message to course participants:
 
@@ -78,19 +116,58 @@ To send an email message to course participants:
 
 #. Select who you want to send the message to from the **Send to** dropdown list. You can select:
 
-  * Myself
-  * Staff and Instructors
-  * All (students, staff and instructors)
+  * **Myself**
+  * **Staff and Instructors**
+  * **All (students, staff and instructors)**
 
 5. Enter a **Subject** for the message. A subject is required.
 
-#. Enter the message body. Messages can use HTML styling, including text formatting and links. The same options are available for your email messages as for the HTML Component that you can add to your course in Studio. See :ref:`Working with HTML Components`. 
+#. Enter the message body. Messages can use HTML styling, including text formatting and links. The same options are available for your email messages as for the Studio HTML Component. See :ref:`Working with HTML Components`. 
 
-* With the **Visual** tab selected, you can click the controls above the message body to select different styling options or add an image or a link. 
-* With the **HTML** tab selected, you can   
+#. Click **Send Email**.  The status of the message displays in the **Pending Instructor Tasks** section of the page.
 
-7. Click **Send Email**.  The status of the message displays in the Pending Instructor Tasks section of the page.
+======================================================
+Message Queueing and Delivery
+======================================================
 
-    .. image:: ../Images/Bulk_email_pending.png
+When you send a message, it is queued for processing as a bulk email task. Multiple courses use the same queue to complete these tasks, so it can take some time for your message to be delivered to its recipients. If your course is a MOOC, consider limiting the number of messages that you send to all course participants to no more than one per week. 
+
+On the **Email** page, the **Pending Instructor Tasks** section shows the status of queued messages. 
+
+.. image:: ../Images/Bulk_email_pending.png
        :width: 800
        :alt: Information about an email message, including who submitted it and when, in tabular format
+
+You can perform other tasks on the Instructor Dashboard or navigate to other pages while you wait for your message to be sent.
+
+.. _Email Task History Report:
+
+********************************
+Email Task History Report
+********************************
+
+You can produce a report of all of the bulk email tasks sent for your course. For each message sent, the report includes the username of the requester, the date and time it was submitted, the duration and state of the entire queues task, the task status, and the current task progress.
+
+You can use this history to investigate questions relating to bulk email and its delivery, such as:
+
+* Monitoring how frequently students are receiving course-related email messages.
+* Verifying that a message was sent successfully.
+* Comparing how many people received course-related messages over time.
+
+======================================
+Review the Email Task History
+======================================
+
+To produce the Email Task History report:
+
+#. View the live version of your course.
+
+#. Click **Instructor** > **Try New Beta Dashboard**.
+
+#. Click **Email**. 
+
+#. In the **Email Task History** section of the page, click **Show Email Task History**. A report like the following example displays on the Instructor Dashboard.
+
+.. image:: ../Images/Bulk_email_history.png
+       :width: 800
+       :alt: A tabular report with a row for each message sent and columns for requester, date and time submitted, duration, state, task status, and task progress.
