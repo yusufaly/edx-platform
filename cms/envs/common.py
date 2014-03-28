@@ -318,7 +318,7 @@ PIPELINE_CSS = {
             'js/vendor/tiny_mce/skins/studio-tmce4/content.min.css',
             'js/vendor/tiny_mce/skins/studio-tmce4/content.inline.min.css',
             'js/vendor/tiny_mce/skins/studio-tmce4/skin.min.css',
-            'js/vendor/tiny_mce/skins/studio-tmce4/skin.ie7.min.css'
+            'css/tiny-mce.css'
         ],
         'output_filename': 'css/cms-style-vendor.css',
     },
