@@ -271,7 +271,7 @@ The CSV file contains the following columns:
    * - ModuleID
      - The internal identifier for the Problem component.
    * - PartID
-     - For a Problem component that contains multiple problems, the internal identifier for each individual problem. Blank for Problem components that contain a single problem.
+     - For a Problem component that contains multiple problems, the internal identifier for each individual problem. For a Problem component that contains a single problem, the internal identifier of that problem. 
    * - Correct Answer
      - 0 if this **AnswerValue** is incorrect, or 1 if this **AnswerValue** is correct.
    * - Count
