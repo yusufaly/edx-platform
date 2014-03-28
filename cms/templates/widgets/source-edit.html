@@ -123,7 +123,7 @@ require(["jquery", "jquery.leanModal", "codemirror/stex"], function($) {
               if (xml.length == 0) {
                   alert('Conversion failed!  error:' + data.message);
               } else {
-                  el.closest('.component').find('.CodeMirror-wrap')[0].CodeMirror.setValue(xml);
+                  el.closest('.xblock-studio_view').find('.CodeMirror-wrap')[0].CodeMirror.setValue(xml);
                   save_hls(el);
               }
           },
@@ -149,7 +149,7 @@ require(["jquery", "jquery.leanModal", "codemirror/stex"], function($) {
   function set_raw_edit_box(data, key) {
       // get the codemirror editor for the raw-edit-box
       // it's a CodeMirror-wrap class element
-      $('#hls-modal-' + key).closest('.component').find('.CodeMirror-wrap')[0].CodeMirror.setValue(data);
+      $('#hls-modal-' + key).closest('.xblock-studio_view').find('.CodeMirror-wrap')[0].CodeMirror.setValue(data);
   }
 
   // save button
@@ -160,7 +160,7 @@ require(["jquery", "jquery.leanModal", "codemirror/stex"], function($) {
 
   function save_hls(el) {
       el.find('.hls-data').val(el.data('editor').getValue());
-      el.closest('.component').find('.save-button').click();
+      el.closest('.xblock-studio_view').find('.save-button').click();
   }
 }); // end require()
   </script>

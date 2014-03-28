@@ -72,7 +72,7 @@ function($, Backbone, _, Utils, MetadataView, MetadataCollection) {
         syncBasicTab: function (metadataCollection, metadataView) {
             var result = [],
                 getField = Utils.getField,
-                component_locator = this.$el.closest('.component').data('locator'),
+                component_locator = this.$el.closest('[data-locator]').data('locator'),
                 subs = getField(metadataCollection, 'sub'),
                 values = {},
                 videoUrl, metadata, modifiedValues;
