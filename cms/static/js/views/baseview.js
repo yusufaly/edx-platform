@@ -47,6 +47,7 @@ define(["jquery", "underscore", "backbone", "js/utils/handle_iframe_binding"],
                 event.preventDefault();
                 target.closest('.expand-collapse').toggleClass('expand').toggleClass('collapse');
                 target.closest('.is-collapsible, .window').toggleClass('collapsed');
+                target.closest('.is-collapsible').children('article').slideToggle();
             },
 
             showLoadingIndicator: function() {

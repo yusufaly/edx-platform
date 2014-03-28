@@ -64,13 +64,19 @@
   .expand-collapse {
     @extend %expand-collapse;
     margin: 0 ($baseline/4);
+    height: ($baseline*1.25);
+    width: $baseline;
   }
 
   &.collapsed .xblock-render {
-    display: none;
+    //display: none;
   }
 
   .action-view {
+
+    .action-button {
+      transition: none;
+    }
 
     .action-button-text {
       padding-right: ($baseline/5);
