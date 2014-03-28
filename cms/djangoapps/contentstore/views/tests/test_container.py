@@ -3,6 +3,7 @@ Unit tests for the container view.
 """
 
 from contentstore.tests.utils import CourseTestCase
+from contentstore.utils import compute_publish_state, PublishState
 from contentstore.views.helpers import xblock_studio_url
 from xmodule.modulestore.tests.factories import ItemFactory
 
@@ -64,7 +65,7 @@ class ContainerViewTestCase(CourseTestCase):
                 r'<a href="/container/{branch_name}/Child_Vertical"\s*'
                 r'class="navigation-link navigation-parent">Child Vertical</a>\s*'
                 r'<a href="#" class="navigation-link navigation-current">Wrapper</a>'
-            ).format(branch_name=branch_name),
+            ).format(branch_name=branch_name)
         )
 
     def _test_html_content(self, xblock, branch_name, expected_section_tag, expected_breadcrumbs):
@@ -73,6 +74,7 @@ class ContainerViewTestCase(CourseTestCase):
         and the breadcrumbs trail is correct.
         """
         url = xblock_studio_url(xblock, self.course)
+        publish_state = compute_publish_state(xblock)
         resp = self.client.get_html(url)
         self.assertEqual(resp.status_code, 200)
         html = resp.content
@@ -80,9 +82,12 @@ class ContainerViewTestCase(CourseTestCase):
         # Verify the navigation link at the top of the page is correct.
         self.assertRegexpMatches(html, expected_breadcrumbs)
         # Verify the link that allows users to change publish status.
-        expected_unit_link = (
-            'This content is published with unit <a href="/unit/{branch_name}/Unit">Unit</a>.'.format(
-                branch_name=branch_name
-            )
+        expected_message = None
+        if publish_state == PublishState.public:
+            expected_message = 'you need to edit unit <a href="/unit/{branch_name}/Unit">Unit</a> as a draft.'
+        else:
+            expected_message = 'your changes will be published with unit <a href="/unit/{branch_name}/Unit">Unit</a>.'
+        expected_unit_link = expected_message.format(
+            branch_name=branch_name
         )
         self.assertIn(expected_unit_link, html)

@@ -318,10 +318,10 @@ def container_handler(request, tag=None, package_id=None, branch=None, version_g
         while parent and parent.category != 'sequential':
             ancestor_xblocks.append(parent)
             parent = get_parent_xblock(parent)
+        ancestor_xblocks.reverse()
+
         unit = None if not ancestor_xblocks else ancestor_xblocks[0]
         unit_publish_state = None if not unit else compute_publish_state(unit)
-
-        ancestor_xblocks.reverse()
 
         return render_to_response('container.html', {
             'context_course': course,
