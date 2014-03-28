@@ -291,9 +291,9 @@ Entries are sorted by the value in each column, starting with the ModuleID on th
 
 Please note the following about the student answer distribution report:   
 
-  * This report includes only problems that at least one student answered since early March 2014. For those problems, this report only includes activity that occurred after October 2013. 
+  * This report includes only problems that at least one student has answered since early March 2014. For those problems, this report only includes activity that occurred after October 2013. 
 
-  * For checkboxes and multiple choice problems, the answer choices actually selected by a student after early March 2014 display as described above. Answer choices selected by at least one student after October 2013, but not selected since early March 2014, are included on the report but do not include an **AnswerValue**. The **ValueID** does display internal identifiers, such as choice_1 and choice_2, for those answers. 
+  * For checkboxes and multiple choice problems, the answer choices actually selected by a student after early March 2014 display as described above. Answer choices selected by at least one student after October 2013, but not selected since early March 2014, are included on the report but do not include an **AnswerValue**. The **ValueID** does display the internal identifiers, such as choice_1 and choice_2, for those answers. 
 
   * For problems that use the **Randomization** setting in Studio, if a particular answer has not been selected since early March 2014, the **Question** is blank for that answer.
 
@@ -304,7 +304,7 @@ Please note the following about the student answer distribution report:
 .. _Download_Answer_Distributions:
 
 ===================================================
-Download Answer Distributions
+Download the Student Answer Distribution Report
 ===================================================
 
 An automated process runs periodically on the edX servers to update the CSV file of student answer data. A link to the most recently updated version of the CSV file is available on the Instructor Dashboard. 
